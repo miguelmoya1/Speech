@@ -1,0 +1,16 @@
+.text-container {}
+
+.recognizing {
+    color: #BDBDBD;
+}
+
+p:hover,
+p:focus {
+    outline: none;
+}
+
+.actual-text,
+.recognizing {
+    padding: 5px 0;
+    display: inline;
+}
