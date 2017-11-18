@@ -16,7 +16,7 @@ else {
 
     recognition.onstart = () => {
         recognizing = true;
-    }
+    };
 
     console.log(recognition);
 
