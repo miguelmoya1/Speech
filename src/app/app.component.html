@@ -1,4 +1,10 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <main>
-    <textarea name="inputToWrite" [(ngModel)]="actualText + textRrecognizing" type="text" #inputToWrite> </textarea>
+    {{recognizing}}
+    <div class="text-container">
+        <textarea name="textareaToWrite" [(ngModel)]="actualText" type="text" #textareaToWrite> hola </textarea>
+        <div class="recognizing">
+            {{textRrecognizing}}
+        </div>
+    </div>
 </main>
