@@ -1,4 +1,17 @@
-.text-container {}
+.controls {
+    padding: .2rem;
+    background-color: blue;
+}
+
+.listener-container {
+    padding: 1rem;
+    background-color: red;
+}
+
+.result {
+    padding: .2rem;
+    background-color: yellow;
+}
 
 .recognizing {
     color: #BDBDBD;
@@ -11,6 +24,10 @@ p:focus {
 
 .actual-text,
 .recognizing {
-    padding: 5px 0;
+    padding: .1rem 0;
     display: inline;
+}
+
+.mic {
+    cursor: pointer;
 }

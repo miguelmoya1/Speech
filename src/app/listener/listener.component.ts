@@ -1,4 +1,5 @@
 import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
+import { SpeechRecognition } from '../shared/interfaces/ISpeechRecognition';
 declare let speechSynthesis: any;
 declare let webkitSpeechRecognition: any; // FIXME: A implementar la interfaz
 
@@ -10,7 +11,7 @@ declare let webkitSpeechRecognition: any; // FIXME: A implementar la interfaz
 export class ListenerComponent implements OnInit {
     actualText = '';
     textRrecognizing = '';
-    recognition; // TODO: Crear interfaz y ponerlo
+    recognition: SpeechRecognition; // TODO: Crear interfaz y ponerlo
     recognizing = false;
 
     @ViewChild('textareaToWrite') textareaToWrite;
@@ -25,12 +26,11 @@ export class ListenerComponent implements OnInit {
         } else {
             this.recognition = new webkitSpeechRecognition();
 
-
             this.recognition.lang = 'es-ES';
             this.recognition.continuous = true;
             this.recognition.interimResults = true;
 
-            this.recognition.onstart = () => {
+            this.recognition.onstart = (e, a) => {
                 this.ngZone.run(() => {
                     this.recognizing = true;
                 });

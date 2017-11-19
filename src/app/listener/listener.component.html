@@ -1,9 +1,11 @@
-<div class="text-container">
-    <i (click)="listen()" [ngClass]="{'mic-red' : recognizing, 'mic-green': !recognizing}" class="material-icons">
-        {{recognizing ? 'mic_off': 'mic'}}
-    </i>
-</div>
-<div class="text-container">
-    <p class="actual-text" contentEditable> {{ actualText }} </p>
-    <p class="recognizing"> {{ textRrecognizing }}</p>
+<div class="listener-container">
+    <div class="controls">
+        <i (click)="listen()" [ngClass]="{'mic-red' : recognizing, 'mic-green': !recognizing}" class="material-icons mic">
+            {{recognizing ? 'mic_off': 'mic'}}
+        </i>
+    </div>
+    <div class="result">
+        <p class="actual-text" contentEditable> {{ actualText }} </p>
+        <p class="recognizing"> {{ textRrecognizing }}</p>
+    </div>
 </div>
