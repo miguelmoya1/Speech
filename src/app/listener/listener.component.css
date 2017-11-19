@@ -7,11 +7,14 @@
 .listener-container {
     padding: 1rem;
     background-color: #546E7A;
+    margin-top: 3.5rem;
 }
 
 .result {
     padding: .2rem;
     min-height: 1.7rem;
+    max-height: 10rem;
+    overflow-y: auto;
     border-radius: .2rem;
     background-color: #CFD8DC;
 }

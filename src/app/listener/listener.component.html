@@ -1,21 +1,21 @@
 <div class="listener-container">
     <div class="controls">
         <div class="left-control">
-            <button mat-mini-fab [ngClass]="{'mic-red' : recognizing, 'mic-green': !recognizing}">
-                <mat-icon (click)="listen()" class="material-icons mic">
+            <button (click)="listen()" mat-mini-fab [ngClass]="{'mic-red' : recognizing, 'mic-green': !recognizing}">
+                <mat-icon class="material-icons mic">
                     {{recognizing ? 'mic_off': 'mic'}}
                 </mat-icon>
             </button>
         </div>
 
         <div class="right-control">
-            <button matTooltip="Exportar txt" mat-mini-fab>
-                <mat-icon (click)="download('txt')" class="material-icons">
+            <button (click)="download('txt')" matTooltip="Exportar txt" mat-mini-fab>
+                <mat-icon class="material-icons">
                     book
                 </mat-icon>
             </button>
-            <button matTooltip="Copiar" mat-mini-fab>
-                <mat-icon (click)="download('copy')" class="material-icons">
+            <button (click)="download('copy')" matTooltip="Copiar" mat-mini-fab>
+                <mat-icon class="material-icons">
                     content_copy
                 </mat-icon>
             </button>
