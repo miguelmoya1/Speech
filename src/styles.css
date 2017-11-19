@@ -28,3 +28,17 @@ body {
 .result::-webkit-scrollbar-track {
     margin-top: 0;
 }
+
+mat-form-field label,
+mat-form-field .md-placeholder {
+    color: grey !important;
+}
+
+.mat-form-field-ripple {
+    background-color: grey;
+}
+
+:disabled,
+ :disabled mat-icon {
+    cursor: not-allowed !important;
+}

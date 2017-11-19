@@ -13,9 +13,12 @@ export class ListenerComponent implements OnInit {
     textRrecognizing = '';
     recognition: SpeechRecognition; // TODO: Crear interfaz y ponerlo
     recognizing = false;
+    title = '';
+    firstTime = true;
+    dateStart: Date;
 
     constructor(
-        private ngZone: NgZone
+        private ngZone: NgZone,
     ) { }
 
     ngOnInit() {
@@ -28,7 +31,7 @@ export class ListenerComponent implements OnInit {
             this.recognition.continuous = true;
             this.recognition.interimResults = true;
 
-            this.recognition.onstart = (e, a) => {
+            this.recognition.onstart = (e) => {
                 this.ngZone.run(() => {
                     this.recognizing = true;
                 });
@@ -60,6 +63,10 @@ export class ListenerComponent implements OnInit {
     }
 
     listen() {
+        if (this.firstTime) {
+            this.firstTime = !this.firstTime;
+            this.dateStart = new Date();
+        }
         if (!this.recognizing) {
             this.recognition.start();
             this.recognizing = true;
@@ -86,5 +93,13 @@ export class ListenerComponent implements OnInit {
             link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(this.actualText));
             link.click();
         }
+    }
+
+    saveTitle() {
+
+        // TODO: Enviar datos al servidor
+        console.log(this.title, this.actualText, this.dateStart, new Date());
+        this.title = '';
+        this.firstTime = true;
     }
 }
