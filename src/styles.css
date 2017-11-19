@@ -24,7 +24,7 @@ body {
     border-radius: .1rem;
 }
 
-.result::-webkit-scrollbar,
+.fc-scroller.fc-day-grid-container::-webkit-scrollbar-track,
 .result::-webkit-scrollbar-track {
     margin-top: 0;
 }
