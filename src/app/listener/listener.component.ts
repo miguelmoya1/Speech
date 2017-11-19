@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { SpeechRecognition } from '../shared/interfaces/ISpeechRecognition';
 declare let speechSynthesis: any;
 declare let webkitSpeechRecognition: any; // FIXME: A implementar la interfaz
@@ -13,8 +13,6 @@ export class ListenerComponent implements OnInit {
     textRrecognizing = '';
     recognition: SpeechRecognition; // TODO: Crear interfaz y ponerlo
     recognizing = false;
-
-    @ViewChild('textareaToWrite') textareaToWrite;
 
     constructor(
         private ngZone: NgZone
@@ -50,9 +48,10 @@ export class ListenerComponent implements OnInit {
                         this.textRrecognizing = event.results[i][0].transcript;
                     });
                 }
+                // TODO: Comprobar si ha pasado mas de X tiempo y si es así añadirlo, para que no se quede bloqueado.
                 if (event.results[event.results.length - 1] && event.results[event.results.length - 1].isFinal) {
                     this.ngZone.run(() => {
-                        this.actualText += this.textRrecognizing;
+                        this.actualText += this.textRrecognizing.charAt(0).toLocaleUpperCase() + this.textRrecognizing.slice(1);
                         this.textRrecognizing = '';
                     });
                 }
@@ -72,4 +71,22 @@ export class ListenerComponent implements OnInit {
         }
     }
 
+    download(type: string) {
+        if (type === 'copy') {
+            const aux = document.createElement('input');
+            aux.setAttribute('value', this.actualText);
+            document.body.appendChild(aux);
+            aux.select();
+            document.execCommand('copy');
+            document.body.removeChild(aux);
+        } else {
+            const link = document.createElement('a'),
+                fileName = 'text.' + type,
+                mimeType = 'text/plain';
+
+            link.setAttribute('download', fileName);
+            link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(this.actualText));
+            link.click();
+        }
+    }
 }

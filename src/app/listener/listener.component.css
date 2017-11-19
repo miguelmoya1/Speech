@@ -1,20 +1,23 @@
 .controls {
-    padding: .2rem;
-    background-color: blue;
+    margin-bottom: .7rem;
+    display: flex;
+    justify-content: space-between;
 }
 
 .listener-container {
     padding: 1rem;
-    background-color: red;
+    background-color: #546E7A;
 }
 
 .result {
     padding: .2rem;
-    background-color: yellow;
+    min-height: 1.2rem;
+    border-radius: .2rem;
+    background-color: #CFD8DC;
 }
 
 .recognizing {
-    color: #BDBDBD;
+    color: #546E7A;
 }
 
 p:hover,
