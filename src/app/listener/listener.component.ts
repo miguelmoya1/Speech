@@ -56,8 +56,6 @@ export class ListenerComponent implements OnInit {
                     });
                 }
             };
-
-            this.listen();
         }
     }
 

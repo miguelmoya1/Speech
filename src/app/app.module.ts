@@ -26,6 +26,7 @@ import { MenuComponent } from './menu/menu.component';
         HttpModule,
         SharedModule,
         RouterModule.forRoot([
+            { path: 'calendario', loadChildren: './calendario/calendario.module#CalendarioModule' },
             { path: '', component: MainComponent },
             { path: '**', redirectTo: '' },
         ]),

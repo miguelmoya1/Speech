@@ -1,17 +1,23 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light">
     <a class="navbar-brand">Isofocus</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu"
         aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <mat-icon>menu</mat-icon>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarMenu">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/']">Inicio</a>
+            <li>
+                <button mat-button [routerLink]="['/']">
+                    <mat-icon>home</mat-icon>
+                    Inicio
+                </button>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/calendario']">Calendario</a>
+            <li>
+                <button mat-button [routerLink]="['/calendario']">
+                    <mat-icon>perm_contact_calendar</mat-icon>
+                    Calendario
+                </button>
             </li>
         </ul>
     </div>
