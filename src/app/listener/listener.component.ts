@@ -6,7 +6,7 @@ declare let webkitSpeechRecognition: any; // FIXME: A implementar la interfaz
 @Component({
     selector: 'app-listener',
     templateUrl: './listener.component.html',
-    styleUrls: ['./listener.component.css']
+    styleUrls: ['./listener.component.scss']
 })
 export class ListenerComponent implements OnInit {
     actualText = '';
