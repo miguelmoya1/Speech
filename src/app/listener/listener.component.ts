@@ -1,5 +1,8 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { SpeechRecognition } from '../shared/interfaces/ISpeechRecognition';
+import { IText } from '../shared/interfaces/itext';
+import { TextService } from '../shared/services/text.service';
+declare let $: any;
 declare let speechSynthesis: any;
 declare let webkitSpeechRecognition: any; // FIXME: A implementar la interfaz
 
@@ -19,6 +22,7 @@ export class ListenerComponent implements OnInit {
 
     constructor(
         private ngZone: NgZone,
+        private textService: TextService
     ) { }
 
     ngOnInit() {
@@ -96,9 +100,14 @@ export class ListenerComponent implements OnInit {
     }
 
     saveTitle() {
-
+        const text: IText = {
+            title: this.title,
+            text: this.actualText,
+            date_start: this.dateStart
+        };
         // TODO: Enviar datos al servidor
-        console.log(this.title, this.actualText, this.dateStart, new Date());
+        this.textService.add(text).subscribe(); // FIXME: Ya sabes lo que hay que hacer
+        $('#saveTitle').modal('hide');
         this.title = '';
         this.firstTime = true;
     }

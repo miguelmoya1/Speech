@@ -12,6 +12,7 @@ declare let $: any;
 export class CalendarioComponent implements OnInit, AfterViewInit {
     fullCalendar;
     events;
+    texts: IText[] = [];
 
     constructor(
         private textService: TextService
@@ -20,11 +21,21 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
     ngOnInit() {
         this.fullCalendar = $('#fullCalendar');
 
+        this.textService.newText$.subscribe(
+            text => {
+                this.texts.push(text);
+                this.renderEvent(text);
+            }
+        );
+
     }
 
     ngAfterViewInit() {
         this.textService.getAll().subscribe(
-            text => this.generateEvent(text),
+            text => {
+                this.texts = text;
+                this.generateEvent(text);
+            },
             error => console.log(error),
             () => this.createCalendar()
         );
@@ -45,8 +56,19 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
                 id: text.id,
                 title: text.title,
                 start: text.date_start,
-                end: text.date_finish
+                end: text.date_finish,
+                text: text.text
             });
         });
+    }
+
+    renderEvent(text: IText) {
+        this.fullCalendar.fullCalendar('renderEvent', {
+            id: text.id,
+            title: text.title,
+            start: text.date_start,
+            end: text.date_finish,
+            text: text.text
+        }, true);
     }
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { IText } from '../interfaces/itext';
 import { Observable } from 'rxjs/Rx';
 import { AuthHttp } from 'angular2-jwt';
@@ -8,6 +8,7 @@ import { SERVER_URL } from '../../app.constants';
 export class TextService {
 
     SERVER_URL = SERVER_URL + '/text/';
+    newText$: EventEmitter<IText> = new EventEmitter<IText>();
 
     constructor(
         private authHttp: AuthHttp
@@ -15,6 +16,10 @@ export class TextService {
 
     add(text: IText): Observable<any> {
         return this.authHttp.post(this.SERVER_URL, text)
+            .map(response => {
+                text.id = response.json().insertId;
+                this.newText$.emit(text);
+            })
             .catch(error => Observable.throw(error));
     }
 
