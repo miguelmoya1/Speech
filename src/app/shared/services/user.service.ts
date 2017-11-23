@@ -30,7 +30,7 @@ export class UserService {
     }
 
     login(email: string, password: string): Observable<boolean> {
-        return this.anyLogin(SERVER_URL + '/login', { email, password });
+        return this.anyLogin(this.SERVER_URL + '/login', { email, password });
     }
 
     private anyLogin(url: string, data: any): Observable<boolean> {
@@ -47,7 +47,7 @@ export class UserService {
 
     isLogged(): Observable<boolean> {
         if (!this.logged && localStorage.getItem('id_token')) {
-            return this.authHttp.get(SERVER_URL + '/token')
+            return this.authHttp.get(this.SERVER_URL + '/token')
                 .map(response => true)
                 .catch(response => Observable.of(false))
                 .do(logged => this.setLogged(<boolean>logged));
@@ -56,7 +56,7 @@ export class UserService {
     }
 
     register(user: IUser): Observable<boolean> {
-        return this.http.post(SERVER_URL + '/register', user)
+        return this.http.post(this.SERVER_URL + '/register', user)
             .map(response => {
                 const resp: any = response.json();
                 if (resp.status === 200) {
@@ -65,10 +65,7 @@ export class UserService {
                 }
                 throw resp.error;
             }).catch((error) => {
-                if (error instanceof Response) {
-                    console.log(error);
-                    throw new Error('Email o nick ya están registrados');
-                }
+                if (error instanceof Response) throw new Error('Email o nick ya están registrados');
                 return Observable.throw(error);
             });
     }

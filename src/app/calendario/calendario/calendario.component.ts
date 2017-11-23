@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { TextService } from '../../shared/services/text.service';
+import { IText } from '../../shared/interfaces/itext';
 declare let $: any;
 
 @Component({
@@ -9,17 +11,42 @@ declare let $: any;
 })
 export class CalendarioComponent implements OnInit, AfterViewInit {
     fullCalendar;
+    events;
 
-    constructor() { }
+    constructor(
+        private textService: TextService
+    ) { }
 
     ngOnInit() {
         this.fullCalendar = $('#fullCalendar');
+
     }
 
     ngAfterViewInit() {
+        this.textService.getAll().subscribe(
+            text => this.generateEvent(text),
+            error => console.log(error),
+            () => this.createCalendar()
+        );
+    }
+
+    createCalendar() {
         this.fullCalendar.fullCalendar({
             timeFormat: 'H:mm',
-            locale: 'es'
+            locale: 'es',
+            eventSources: [this.events],
+        });
+    }
+
+    generateEvent(texts: IText[]) {
+        this.events = [];
+        texts.forEach(text => {
+            this.events.push({
+                id: text.id,
+                title: text.title,
+                start: text.date_start,
+                end: text.date_finish
+            });
         });
     }
 }

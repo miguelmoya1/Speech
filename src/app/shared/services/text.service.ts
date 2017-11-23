@@ -14,16 +14,19 @@ export class TextService {
     ) { }
 
     add(text: IText): Observable<any> {
-        return this.authHttp.post(SERVER_URL, text);
+        return this.authHttp.post(this.SERVER_URL, text)
+            .catch(error => Observable.throw(error));
     }
 
     getAll(): Observable<IText[]> {
-        return this.authHttp.get(SERVER_URL)
-            .map(response => response.json().text);
+        return this.authHttp.get(this.SERVER_URL)
+            .map(response => response.json().text)
+            .catch(error => Observable.throw(error));
     }
 
     get(id: number): Observable<IText> {
-        return this.authHttp.get(SERVER_URL + id)
-            .map(response => response.json().text);
+        return this.authHttp.get(this.SERVER_URL + id)
+            .map(response => response.json().text)
+            .catch(error => Observable.throw(error));
     }
 }
