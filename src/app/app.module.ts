@@ -3,14 +3,24 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { HttpModule } from '@angular/http';
+import { HttpModule, Http, RequestOptions } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ListenerComponent } from './listener/listener.component';
 import { MainComponent } from './main/main.component';
 import { SharedModule } from './shared/shared.module';
 import { MenuComponent } from './menu/menu.component';
+import { UserService } from './shared/services/user.service';
+import { AuthConfig, AuthHttp } from 'angular2-jwt';
 
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+    return new AuthHttp(new AuthConfig({
+        headerName: 'Authorization',
+        tokenName: 'id_token',
+        tokenGetter: (() => localStorage.getItem('id_token')),
+        globalHeaders: [{ 'Content-Type': 'application/json' }],
+    }), http, options);
+}
 
 @NgModule({
     declarations: [
@@ -31,7 +41,12 @@ import { MenuComponent } from './menu/menu.component';
             { path: '**', redirectTo: '' },
         ]),
     ],
-    providers: [
+    providers: [{
+        provide: AuthHttp,
+        useFactory: authHttpServiceFactory,
+        deps: [Http, RequestOptions]
+    },
+        UserService,
     ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
