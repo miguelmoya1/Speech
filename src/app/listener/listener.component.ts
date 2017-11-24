@@ -14,7 +14,7 @@ declare let webkitSpeechRecognition: any; // FIXME: A implementar la interfaz
 export class ListenerComponent implements OnInit {
     actualText = '';
     textRrecognizing = '';
-    recognition: SpeechRecognition; // TODO: Crear interfaz y ponerlo
+    recognition: SpeechRecognition;
     recognizing = false;
     title = '';
     firstTime = true;
@@ -81,6 +81,7 @@ export class ListenerComponent implements OnInit {
     }
 
     download(type: string) {
+        $('#saveTitle').modal();
         if (type === 'copy') {
             const aux = document.createElement('input');
             aux.setAttribute('value', this.actualText);
@@ -105,10 +106,10 @@ export class ListenerComponent implements OnInit {
             text: this.actualText,
             date_start: this.dateStart
         };
-        // TODO: Enviar datos al servidor
         this.textService.add(text).subscribe(); // FIXME: Ya sabes lo que hay que hacer
         $('#saveTitle').modal('hide');
         this.title = '';
+        this.actualText = '';
         this.firstTime = true;
     }
 }

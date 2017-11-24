@@ -13,6 +13,7 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
     fullCalendar;
     events;
     texts: IText[] = [];
+    textEdit: IText;
 
     constructor(
         private textService: TextService
@@ -27,7 +28,6 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
                 this.renderEvent(text);
             }
         );
-
     }
 
     ngAfterViewInit() {
@@ -45,30 +45,34 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
         this.fullCalendar.fullCalendar({
             timeFormat: 'H:mm',
             locale: 'es',
+            eventLimit: true,
             eventSources: [this.events],
+            eventClick: (event, element) => {
+                this.textEdit = this.texts.find(e => e.id === event.id);
+                $('#editModal').modal();
+                console.log(event);
+
+                console.log(this.textEdit);
+            },
         });
     }
 
     generateEvent(texts: IText[]) {
         this.events = [];
-        texts.forEach(text => {
-            this.events.push({
-                id: text.id,
-                title: text.title,
-                start: text.date_start,
-                end: text.date_finish,
-                text: text.text
-            });
-        });
+        texts.forEach(text => this.events.push(this.setEvent(text)));
     }
 
     renderEvent(text: IText) {
-        this.fullCalendar.fullCalendar('renderEvent', {
+        this.fullCalendar.fullCalendar('renderEvent', this.setEvent(text));
+    }
+
+    setEvent(text: IText) {
+        return {
             id: text.id,
             title: text.title,
             start: text.date_start,
             end: text.date_finish,
-            text: text.text
-        }, true);
+            // source: text
+        };
     }
 }

@@ -1,3 +1,4 @@
+@import '../shared/styles/colors.scss';
 .controls {
     margin-bottom: .7rem;
     display: flex;
@@ -6,7 +7,7 @@
 
 .listener-container {
     padding: 1rem;
-    background-color: #546E7A;
+    background-color: $g6;
     margin-top: 3.5rem;
 }
 
@@ -16,11 +17,11 @@
     max-height: 10rem;
     overflow-y: auto;
     border-radius: .2rem;
-    background-color: #CFD8DC;
+    background-color: $g1;
 }
 
 .recognizing {
-    color: #546E7A;
+    color: $g6;
 }
 
 p:hover,
@@ -39,7 +40,7 @@ p:focus {
 }
 
 .save-button {
-    color: #4CAF50 !important;
+    color: $green !important;
 }
 
 .close-modal {

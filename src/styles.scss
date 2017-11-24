@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
+@import 'app/shared/styles/colors.scss';
 body {
     margin: 0;
 }
@@ -16,11 +17,11 @@ body {
 
 ::-webkit-scrollbar {
     width: 10px;
-    background-color: #ECEFF1;
+    background-color: $g0;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #263238;
+    background-color: $g9;
     border-radius: .1rem;
 }
 
@@ -31,14 +32,21 @@ body {
 
 mat-form-field label,
 mat-form-field .md-placeholder {
-    color: grey !important;
+    color: $g7 !important;
 }
 
 .mat-form-field-ripple {
-    background-color: grey;
+    background-color: $g7;
 }
 
-:disabled,
+ :disabled,
  :disabled mat-icon {
     cursor: not-allowed !important;
+}
+
+.fc-event,
+.fc-content {
+    cursor: pointer;
+    background-color: $g4;
+    border-color: $g3;
 }

@@ -20,15 +20,9 @@
             "prefix": "app",
             "styles": [
                 "../node_modules/fullcalendar/dist/fullcalendar.min.css",
-                "styles.css"
+                "styles.scss"
             ],
-            "scripts": [
-                "../node_modules/hammerjs/hammer.min.js",
-                "../node_modules/jquery/dist/jquery.js",
-                "../node_modules/moment/moment.js",
-                "../node_modules/fullcalendar/dist/fullcalendar.min.js",
-                "../node_modules/fullcalendar/dist/locale-all.js"
-            ],
+            "scripts": [],
             "environmentSource": "environments/environment.ts",
             "environments": {
                 "dev": "environments/environment.ts",

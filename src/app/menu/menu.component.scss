@@ -1,5 +1,6 @@
+@import '../shared/styles/colors.scss';
 .navbar {
-    background-color: #ECEFF1;
+    background-color: $g0;
     position: fixed;
     width: 100%;
     z-index: 1040;
@@ -10,5 +11,5 @@ a {
 }
 
 mat-icon {
-    color: #546E7A;
+    color: $g6;
 }
