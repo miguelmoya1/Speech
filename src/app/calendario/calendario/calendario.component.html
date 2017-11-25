@@ -4,7 +4,6 @@
 <div class="modal fade" id="editModal">
     <div class="modal-dialog">
         <div class="modal-content">
-
             <div class="modal-header">
                 <h4 class="modal-title" *ngIf="textEdit">Editar {{textEdit.title}}</h4>
                 <mat-icon class="material-icons close-modal" data-dismiss="modal">
@@ -20,7 +19,7 @@
                     </mat-form-field>
                     <div>
                         <span class="text">Texto</span>
-                        <p contentEditable> {{ textEdit.text }} </p>
+                        <p #pText contentEditable> {{ textEdit.text }} </p>
                         <!-- TODO: mirar como hacerlo porque no funciona -->
                     </div>
                 </form>
@@ -31,7 +30,6 @@
                 <button type="button" mat-button class="save-button" (click)="updateText()">Guardar</button>
                 <button type="button" mat-button data-dismiss="modal">Cerrar</button>
             </div>
-
         </div>
     </div>
 </div>

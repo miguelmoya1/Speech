@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
 import { SpeechRecognition } from '../shared/interfaces/ISpeechRecognition';
 import { IText } from '../shared/interfaces/itext';
 import { TextService } from '../shared/services/text.service';
@@ -19,6 +19,7 @@ export class ListenerComponent implements OnInit {
     title = '';
     firstTime = true;
     dateStart: Date;
+    @ViewChild('pText') pText;
 
     constructor(
         private ngZone: NgZone,
@@ -103,7 +104,7 @@ export class ListenerComponent implements OnInit {
     saveTitle() {
         const text: IText = {
             title: this.title,
-            text: this.actualText,
+            text: this.pText.nativeElement.innerText,
             date_start: this.dateStart
         };
         this.textService.add(text).subscribe(); // FIXME: Ya sabes lo que hay que hacer

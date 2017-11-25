@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { TextService } from '../../shared/services/text.service';
 import { IText } from '../../shared/interfaces/itext';
@@ -14,10 +14,13 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
     events;
     texts: IText[] = [];
     textEdit: IText;
+    @ViewChild('pText') pText;
 
     constructor(
         private textService: TextService
-    ) { }
+    ) {
+        this.textEdit = { title: '' };
+    }
 
     ngOnInit(): void {
         this.fullCalendar = $('#fullCalendar');
@@ -73,16 +76,13 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
     }
 
     updateText(): void {
-        console.log(this.textEdit)
+        this.textEdit.text = this.pText.nativeElement.innerText;
         this.textService.update(this.textEdit).subscribe(
             () => {
                 this.texts = this.texts.filter(e => {
-                    if (e.id === this.textEdit.id)
-                        e = this.textEdit;
-                    console.log(e.id, this.textEdit.id)
+                    if (e.id === this.textEdit.id) e = this.textEdit;
                     return e;
                 });
-                console.log(this.texts)
                 this.fullCalendar.fullCalendar('removeEvents', this.textEdit.id);
                 this.renderEvent(this.textEdit);
                 $('#editModal').modal('hide');
