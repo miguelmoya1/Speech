@@ -25,6 +25,7 @@ body {
     border-radius: .1rem;
 }
 
+.mat-input-element::-webkit-scrollbar-track,
 .fc-scroller.fc-day-grid-container::-webkit-scrollbar-track,
 .result::-webkit-scrollbar-track {
     margin-top: 0;
@@ -49,4 +50,8 @@ mat-form-field .md-placeholder {
     cursor: pointer;
     background-color: $g4;
     border-color: $g3;
+}
+
+.save-button {
+    color: $green !important;
 }

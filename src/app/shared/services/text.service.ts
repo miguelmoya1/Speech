@@ -34,4 +34,10 @@ export class TextService {
             .map(response => response.json().text)
             .catch(error => Observable.throw(error));
     }
+
+    update(text: IText): Observable<any> {
+        return this.authHttp.put(this.SERVER_URL, text)
+            .map(response => response.json().text)
+            .catch(error => Observable.throw(error));
+    }
 }

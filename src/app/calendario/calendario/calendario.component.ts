@@ -19,7 +19,7 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
         private textService: TextService
     ) { }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.fullCalendar = $('#fullCalendar');
 
         this.textService.newText$.subscribe(
@@ -30,7 +30,7 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
         );
     }
 
-    ngAfterViewInit() {
+    ngAfterViewInit(): void {
         this.textService.getAll().subscribe(
             text => {
                 this.texts = text;
@@ -41,7 +41,7 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
         );
     }
 
-    createCalendar() {
+    createCalendar(): void {
         this.fullCalendar.fullCalendar({
             timeFormat: 'H:mm',
             locale: 'es',
@@ -50,29 +50,43 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
             eventClick: (event, element) => {
                 this.textEdit = this.texts.find(e => e.id === event.id);
                 $('#editModal').modal();
-                console.log(event);
-
-                console.log(this.textEdit);
             },
         });
     }
 
-    generateEvent(texts: IText[]) {
+    generateEvent(texts: IText[]): void {
         this.events = [];
         texts.forEach(text => this.events.push(this.setEvent(text)));
     }
 
-    renderEvent(text: IText) {
+    renderEvent(text: IText): void {
         this.fullCalendar.fullCalendar('renderEvent', this.setEvent(text));
     }
 
-    setEvent(text: IText) {
+    setEvent(text: IText): {} { // TODO: Interfaz de evento
         return {
             id: text.id,
             title: text.title,
             start: text.date_start,
-            end: text.date_finish,
-            // source: text
+            end: text.date_finish
         };
+    }
+
+    updateText(): void {
+        console.log(this.textEdit)
+        this.textService.update(this.textEdit).subscribe(
+            () => {
+                this.texts = this.texts.filter(e => {
+                    if (e.id === this.textEdit.id)
+                        e = this.textEdit;
+                    console.log(e.id, this.textEdit.id)
+                    return e;
+                });
+                console.log(this.texts)
+                this.fullCalendar.fullCalendar('removeEvents', this.textEdit.id);
+                this.renderEvent(this.textEdit);
+                $('#editModal').modal('hide');
+            }
+        ); // TODO: Mostrar algo :D
     }
 }

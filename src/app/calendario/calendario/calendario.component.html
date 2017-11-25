@@ -1,18 +1,12 @@
 <div id="fullCalendar"></div>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#editModal">
-    Launch
-</button>
-
 <!-- The Modal -->
 <div class="modal fade" id="editModal">
     <div class="modal-dialog">
         <div class="modal-content">
 
-            <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Titulo</h4>
+                <h4 class="modal-title" *ngIf="textEdit">Editar {{textEdit.title}}</h4>
                 <mat-icon class="material-icons close-modal" data-dismiss="modal">
                     close
                 </mat-icon>
@@ -22,14 +16,19 @@
             <div class="modal-body">
                 <form class="form" *ngIf="textEdit">
                     <mat-form-field class="full-width">
-                        <input autocomplete="off" matInput name="title" placeholder="Titulo" [(ngModel)]="textEdit.title">
+                        <input autocomplete="off" class="full-width" matInput name="title" placeholder="Titulo" [(ngModel)]="textEdit.title">
                     </mat-form-field>
+                    <div>
+                        <span class="text">Texto</span>
+                        <p contentEditable> {{ textEdit.text }} </p>
+                        <!-- TODO: mirar como hacerlo porque no funciona -->
+                    </div>
                 </form>
             </div>
 
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" mat-button class="save-button" data-dismiss="modal">Guardar</button>
+                <button type="button" mat-button class="save-button" (click)="updateText()">Guardar</button>
                 <button type="button" mat-button data-dismiss="modal">Cerrar</button>
             </div>
 
