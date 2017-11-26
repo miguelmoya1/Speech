@@ -10,6 +10,27 @@ a {
     text-decoration: none;
 }
 
-mat-icon {
+mat-icon,
+.mat-button[disabled] {
     color: $g6;
+}
+
+.button-menu-link {
+    display: flex;
+}
+
+.menu-login {
+    min-width: 15rem;
+    text-align: center;
+}
+
+.login-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button-menu-login {
+    display: inline-block;
+    width: 100%;
 }

@@ -6,19 +6,36 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarMenu">
-        <ul class="navbar-nav mr-auto">
-            <li>
-                <button mat-button [routerLink]="['/']">
-                    <mat-icon>home</mat-icon>
-                    Inicio
-                </button>
-            </li>
-            <li>
-                <button mat-button [routerLink]="['/calendario']">
-                    <mat-icon>perm_contact_calendar</mat-icon>
-                    Calendario
-                </button>
-            </li>
-        </ul>
+        <div class="navbar-nav mr-auto">
+            <button mat-button class="button-menu-link" [routerLink]="['/']">
+                <mat-icon>home</mat-icon>
+                Inicio
+            </button>
+            <button mat-button class="button-menu-link" [routerLink]="['/calendario']">
+                <mat-icon>perm_contact_calendar</mat-icon>
+                Calendario
+            </button>
+        </div>
+        <div class="navbar-nav dropdown">
+            <button mat-button class="button-menu-link" id="dropdownMenuLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <mat-icon>power_settings_new</mat-icon>
+                Iniciar sesión
+            </button>
+            <div class="dropdown dropdown-menu dropdown-menu-right menu-login" aria-labelledby="dropdownMenuLogin">
+                <form class="login-menu">
+                    <mat-form-field class="full-width">
+                        <input autocomplete="off" matInput name="email" placeholder="Correo electronico o nick" [(ngModel)]="email">
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <input autocomplete="off" matInput name="password" placeholder="Contraseña" [(ngModel)]="password">
+                    </mat-form-field>
+                </form>
+                <button [disabled]="getDisableLogin()" mat-button (click)="login()" class="button-menu-link button-menu-login">Iniciar sesión</button>
+                <div class="dropdown-divider"></div>
+                <p>¿Nuevo en Isofocus? Regístrate</p>
+                <!-- TODO: HAcer link de registro -->
+                <!-- <a class="dropdown-item" href="#">Forgot password?</a> -->
+            </div>
+        </div>
     </div>
 </nav>
