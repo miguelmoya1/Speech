@@ -100,7 +100,6 @@ export class ListenerComponent implements OnInit {
     }
 
     download(type: string) {
-        $('#saveTitle').modal();
         if (type === 'copy') {
             const aux = document.createElement('input');
             aux.setAttribute('value', this.actualText);

@@ -16,12 +16,16 @@
         </div>
 
         <div class="right-control">
-            <button (click)="download('txt')" matTooltip="Exportar txt" mat-mini-fab>
-                <mat-icon> book </mat-icon>
-            </button>
-            <button (click)="download('copy')" matTooltip="Copiar" mat-mini-fab>
-                <mat-icon> content_copy </mat-icon>
-            </button>
+            <div matTooltip="Graba algo para descargar" [matTooltipDisabled]="actualText !== ''">
+                <button (click)="download('txt')" [disabled]="actualText === ''" matTooltip="Exportar txt" mat-mini-fab>
+                    <mat-icon> book </mat-icon>
+                </button>
+            </div>
+            <div matTooltip="Graba algo para copiar" [matTooltipDisabled]="actualText !== ''">
+                <button (click)="download('copy')" [disabled]="actualText === ''" matTooltip="Copiar" mat-mini-fab>
+                    <mat-icon> content_copy </mat-icon>
+                </button>
+            </div>
         </div>
     </div>
     <div class="result">

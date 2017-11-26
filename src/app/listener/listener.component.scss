@@ -53,3 +53,11 @@ p:focus {
 .full-width {
     width: 100%;
 }
+
+.right-control {
+    display: flex;
+}
+
+.right-control div {
+    padding: 0 .1rem;
+}

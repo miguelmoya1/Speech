@@ -30,7 +30,7 @@
                         <input autocomplete="off" matInput name="email" placeholder="Correo electronico o nick" [(ngModel)]="email">
                     </mat-form-field>
                     <mat-form-field class="full-width">
-                        <input autocomplete="off" matInput name="password" placeholder="Contraseña" [(ngModel)]="password">
+                        <input autocomplete="off" matInput name="password" type="password" placeholder="Contraseña" [(ngModel)]="password">
                     </mat-form-field>
                 </form>
                 <button [disabled]="getDisableLogin()" mat-button (click)="login()" class="button-menu-link button-menu-login">Iniciar sesión</button>
