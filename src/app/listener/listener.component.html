@@ -2,9 +2,7 @@
     <div class="controls">
         <div class="left-control">
             <button (click)="listen()" matTooltip="{{recognizing ? 'Parar': 'Grabar'}}" mat-mini-fab [ngClass]="{'mic-red' : recognizing, 'mic-green': !recognizing}">
-                <mat-icon class="material-icons mic">
-                    {{recognizing ? 'mic_off': 'mic'}}
-                </mat-icon>
+                <mat-icon class="material-icons mic"> {{recognizing ? 'mic_off': 'mic'}} </mat-icon>
             </button>
         </div>
 
@@ -12,21 +10,17 @@
             <div [matTooltip]="user ? 'Graba algo para guardar' : 'Inicia sesión para poder guardar'" [matTooltipDisabled]="user && actualText !== ''">
                 <button [disabled]="actualText === '' || !user" mat-mini-fab matTooltip="Guardar" data-toggle="modal" data-target="#saveTitle"
                     class="save-button">
-                    <mat-icon class="material-icons">save</mat-icon>
+                    <mat-icon> save </mat-icon>
                 </button>
             </div>
         </div>
 
         <div class="right-control">
             <button (click)="download('txt')" matTooltip="Exportar txt" mat-mini-fab>
-                <mat-icon class="material-icons">
-                    book
-                </mat-icon>
+                <mat-icon> book </mat-icon>
             </button>
             <button (click)="download('copy')" matTooltip="Copiar" mat-mini-fab>
-                <mat-icon class="material-icons">
-                    content_copy
-                </mat-icon>
+                <mat-icon> content_copy </mat-icon>
             </button>
         </div>
     </div>
@@ -41,9 +35,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Titulo</h4>
-                <mat-icon class="material-icons close-modal" data-dismiss="modal">
-                    close
-                </mat-icon>
+                <mat-icon class="material-icons close-modal" data-dismiss="modal"> close </mat-icon>
             </div>
             <div class="modal-body">
                 <form class="form">

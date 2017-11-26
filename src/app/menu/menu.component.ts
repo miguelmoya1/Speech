@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../shared/services/auth.service';
 import { UserService } from '../shared/services/user.service';
 import { IUser } from '../shared/interfaces/iuser';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-menu',
@@ -16,7 +17,8 @@ export class MenuComponent implements OnInit {
 
     constructor(
         private authService: AuthService,
-        private userService: UserService
+        private userService: UserService,
+        private router: Router
     ) { }
 
     ngOnInit() {
@@ -44,5 +46,6 @@ export class MenuComponent implements OnInit {
 
     logout() {
         this.authService.logout();
+        this.router.navigate(['/']);
     }
 }

@@ -14,6 +14,7 @@ import { MenuComponent } from './menu/menu.component';
 import { UserService } from './shared/services/user.service';
 import { TextService } from './shared/services/text.service';
 import { AuthService } from './shared/services/auth.service';
+import { CanActivateGuard } from './shared/guards/can-activate.guard';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -38,9 +39,19 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         HttpModule,
         SharedModule,
         RouterModule.forRoot([
-            { path: 'calendario', loadChildren: './calendario/calendario.module#CalendarioModule' },
-            { path: '', component: MainComponent },
-            { path: '**', redirectTo: '' },
+            {
+                path: 'calendario',
+                canActivate: [CanActivateGuard],
+                loadChildren: './calendario/calendario.module#CalendarioModule'
+            },
+            {
+                path: '',
+                component: MainComponent
+            },
+            {
+                path: '**',
+                redirectTo: ''
+            },
         ]),
     ],
     providers: [{
@@ -50,7 +61,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     },
         UserService,
         TextService,
-        AuthService
+        AuthService,
+        CanActivateGuard
     ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
