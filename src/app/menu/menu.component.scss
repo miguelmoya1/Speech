@@ -34,3 +34,10 @@ mat-icon,
     display: inline-block;
     width: 100%;
 }
+
+.login-button {
+    max-width: 15rem;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}

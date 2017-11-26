@@ -16,19 +16,19 @@ export class UserService {
     ) { }
 
     getUser(): Observable<IUser> {
-        return this.http.get(SERVER_URL)
+        return this.http.get(this.SERVER_URL)
             .map(response => <IUser>response.json().user)
             .catch(error => error);
     }
 
     getUserId(id): Observable<IUser> {
-        return this.http.get(SERVER_URL + id)
+        return this.http.get(this.SERVER_URL + id)
             .map(response => <IUser>response.json().user)
             .catch(error => error);
     }
 
     editUser(user: IUser): Observable<IUser> {
-        return this.http.put(SERVER_URL, user)
+        return this.http.put(this.SERVER_URL, user)
             .map(response => <IUser>response.json().user)
             .catch(error => error);
     }

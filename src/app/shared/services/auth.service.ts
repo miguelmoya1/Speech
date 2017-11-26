@@ -19,9 +19,9 @@ export class AuthService {
 
     private setLogged(logged: boolean, token = ''): boolean {
         this.logged = logged;
-        this.logged$.emit(logged);
         if (logged && token) localStorage.setItem('id_token', token);
         else if (!logged) localStorage.removeItem('id_token');
+        this.logged$.emit(logged);
         return logged;
     }
 
@@ -38,7 +38,7 @@ export class AuthService {
     isLogged(): Observable<boolean> {
         if (!this.logged && localStorage.getItem('id_token')) {
             return this.authHttp.get(this.SERVER_URL + 'token')
-                .map(response => true)
+                .map(response => this.setLogged(true))
                 .catch(error => Observable.of(false))
                 .do(logged => this.setLogged(logged));
         }
