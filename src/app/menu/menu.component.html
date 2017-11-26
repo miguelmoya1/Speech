@@ -19,7 +19,7 @@
         <div class="navbar-nav dropdown">
             <button mat-button class="button-menu-link" id="dropdownMenuLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <mat-icon>power_settings_new</mat-icon>
-                Iniciar sesión
+                {{logged ? 'Tu perfil' : 'Iniciar sesión'}}
             </button>
             <div class="dropdown dropdown-menu dropdown-menu-right menu-login" aria-labelledby="dropdownMenuLogin">
                 <form class="login-menu">

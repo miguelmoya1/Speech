@@ -20,16 +20,13 @@ export class AuthService {
     private setLogged(logged: boolean, token = '') {
         this.logged = logged;
         this.logged$.emit(logged);
-        if (logged && token) {
-            localStorage.setItem('id_token', token);
-        } else if (!logged) {
-            localStorage.removeItem('id_token');
-        }
+        if (logged && token) localStorage.setItem('id_token', token);
+        else if (!logged) localStorage.removeItem('id_token');
         return logged;
     }
 
     login(email: string, password: string): Observable<boolean> {
-        return this.anyLogin(SERVER_URL + '/auth/login', { email, password });
+        return this.anyLogin(this.SERVER_URL + '/login', { email, password });
     }
 
     private anyLogin(url: string, data: any): Observable<boolean> {
@@ -38,15 +35,13 @@ export class AuthService {
                 const resp: any = response.json();
                 if (resp.status === 200) return this.setLogged(true, resp.token);
                 else throw resp.error;
-            }).catch((error) => {
-                if (error instanceof Response) return Observable.throw('Login error');
-                return Observable.throw(error);
-            });
+            })
+            .catch(error => Observable.throw(error));
     }
 
     isLogged(): Observable<boolean> {
         if (!this.logged && localStorage.getItem('id_token')) {
-            return this.authHttp.get(SERVER_URL + '/auth/token')
+            return this.authHttp.get(this.SERVER_URL + '/token')
                 .map(response => true)
                 .catch((response: Response) => Observable.of(false))
                 .do(logged => this.setLogged(logged));
@@ -55,7 +50,7 @@ export class AuthService {
     }
 
     register(user: IUser): Observable<boolean> {
-        return this.http.post(SERVER_URL + '/auth/register', user)
+        return this.http.post(this.SERVER_URL + '/register', user)
             .map(response => {
                 const resp: any = response.json();
                 if (resp.status === 200) return this.setLogged(true, resp.token);

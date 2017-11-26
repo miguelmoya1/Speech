@@ -9,14 +9,15 @@ import { AuthService } from '../shared/services/auth.service';
 export class MenuComponent implements OnInit {
     email = '';
     password = '';
-    loggged = false;
+    logged = false;
 
     constructor(
         private authService: AuthService
     ) { }
 
     ngOnInit() {
-        this.authService.logged$.subscribe(logged => this.loggged = logged);
+        this.authService.logged$.subscribe(logged => this.logged = logged);
+        this.authService.isLogged().subscribe(logged => this.logged = logged);
     }
 
     getDisableLogin(): boolean {
