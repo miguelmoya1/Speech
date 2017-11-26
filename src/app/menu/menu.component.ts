@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
     selector: 'app-menu',
@@ -8,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class MenuComponent implements OnInit {
     email = '';
     password = '';
+    loggged = false;
 
-    constructor() { }
+    constructor(
+        private authService: AuthService
+    ) { }
 
     ngOnInit() {
+        this.authService.logged$.subscribe(logged => this.loggged = logged);
     }
 
     getDisableLogin(): boolean {
@@ -20,6 +25,6 @@ export class MenuComponent implements OnInit {
     }
 
     login() {
-        console.log({ email: this.email, password: this.password })
+        this.authService.login(this.email, this.password).subscribe();
     }
 }
