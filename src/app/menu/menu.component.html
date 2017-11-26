@@ -11,10 +11,12 @@
                 <mat-icon>home</mat-icon>
                 Inicio
             </button>
-            <button mat-button class="button-menu-link" [routerLink]="['/calendario']">
-                <mat-icon>perm_contact_calendar</mat-icon>
-                Calendario
-            </button>
+            <div matTooltip="Inicia sesión para ver esta zona" [matTooltipDisabled]="user">
+                <button mat-button class="button-menu-link" [disabled]="!user" [routerLink]="['/calendario']">
+                    <mat-icon>perm_contact_calendar</mat-icon>
+                    Calendario
+                </button>
+            </div>
         </div>
         <div class="navbar-nav dropdown" *ngIf="!user; else userShow">
             <button mat-button class="button-menu-link login-button" id="dropdownMenuLogin" data-toggle="dropdown" aria-haspopup="true"

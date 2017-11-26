@@ -2,6 +2,9 @@ import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
 import { SpeechRecognition } from '../shared/interfaces/ISpeechRecognition';
 import { IText } from '../shared/interfaces/itext';
 import { TextService } from '../shared/services/text.service';
+import { AuthService } from '../shared/services/auth.service';
+import { IUser } from '../shared/interfaces/iuser';
+import { UserService } from '../shared/services/user.service';
 declare let $: any;
 declare let speechSynthesis: any;
 declare let webkitSpeechRecognition: any; // FIXME: A implementar la interfaz
@@ -19,14 +22,20 @@ export class ListenerComponent implements OnInit {
     title = '';
     firstTime = true;
     dateStart: Date;
+    user: IUser;
     @ViewChild('pText') pText;
 
     constructor(
         private ngZone: NgZone,
-        private textService: TextService
+        private textService: TextService,
+        private authService: AuthService,
+        private userService: UserService
     ) { }
 
     ngOnInit() {
+        this.authService.logged$.subscribe(logged => this.setLoggedAndUser(logged));
+        this.authService.isLogged().subscribe();
+
         if (!('webkitSpeechRecognition' in window)) {
             // TODO: Mostrar error de que no se reconoce.
         } else {
@@ -65,6 +74,15 @@ export class ListenerComponent implements OnInit {
                 }
             };
         }
+    }
+
+    private setLoggedAndUser(logged: boolean): void {
+        if (logged)
+            this.userService.getUser().subscribe(
+                user => this.user = user,
+                error => { } // TODO: Mostrar el error
+            );
+        else this.user = null;
     }
 
     listen() {

@@ -9,6 +9,7 @@ import {
     MatTooltipModule,
     MatDialogModule,
     MatInputModule,
+    TooltipComponent,
 } from '@angular/material';
 
 @NgModule({
@@ -30,7 +31,10 @@ import {
         MatTooltipModule,
         MatDialogModule,
         MatInputModule,
+        TooltipComponent,
     ],
-    declarations: [],
+    declarations: [
+        // TooltipComponent,
+    ],
 })
 export class SharedModule { }

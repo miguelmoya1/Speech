@@ -9,11 +9,12 @@
         </div>
 
         <div class="middle-control">
-            <button [disabled]="actualText === ''" mat-mini-fab matTooltip="Guardar" data-toggle="modal" data-target="#saveTitle" class="save-button">
-                <mat-icon class="material-icons mic">
-                    save
-                </mat-icon>
-            </button>
+            <div [matTooltip]="user ? 'Graba algo para guardar' : 'Inicia sesión para poder guardar'" [matTooltipDisabled]="user && actualText !== ''">
+                <button [disabled]="actualText === '' || !user" mat-mini-fab matTooltip="Guardar" data-toggle="modal" data-target="#saveTitle"
+                    class="save-button">
+                    <mat-icon class="material-icons">save</mat-icon>
+                </button>
+            </div>
         </div>
 
         <div class="right-control">
