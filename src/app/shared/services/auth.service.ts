@@ -10,14 +10,14 @@ import { IUser } from '../interfaces/iuser';
 export class AuthService {
     logged = false;
     logged$: EventEmitter<boolean> = new EventEmitter<boolean>();
-    SERVER_URL = SERVER_URL + '/auth';
+    SERVER_URL = SERVER_URL + '/auth/';
 
     constructor(
         private http: Http,
         private authHttp: AuthHttp,
     ) { }
 
-    private setLogged(logged: boolean, token = '') {
+    private setLogged(logged: boolean, token = ''): boolean {
         this.logged = logged;
         this.logged$.emit(logged);
         if (logged && token) localStorage.setItem('id_token', token);
@@ -26,42 +26,32 @@ export class AuthService {
     }
 
     login(email: string, password: string): Observable<boolean> {
-        return this.anyLogin(this.SERVER_URL + '/login', { email, password });
+        return this.anyLogin(this.SERVER_URL + 'login', { email, password });
     }
 
     private anyLogin(url: string, data: any): Observable<boolean> {
         return this.http.post(url, data)
-            .map(response => {
-                const resp: any = response.json();
-                if (resp.status === 200) return this.setLogged(true, resp.token);
-                else throw resp.error;
-            })
+            .map(response => this.setLogged(true, response.json().token))
             .catch(error => Observable.throw(error));
     }
 
     isLogged(): Observable<boolean> {
         if (!this.logged && localStorage.getItem('id_token')) {
-            return this.authHttp.get(this.SERVER_URL + '/token')
+            return this.authHttp.get(this.SERVER_URL + 'token')
                 .map(response => true)
-                .catch((response: Response) => Observable.of(false))
+                .catch(error => Observable.of(false))
                 .do(logged => this.setLogged(logged));
         }
         return Observable.of(this.logged);
     }
 
     register(user: IUser): Observable<boolean> {
-        return this.http.post(this.SERVER_URL + '/register', user)
-            .map(response => {
-                const resp: any = response.json();
-                if (resp.status === 200) return this.setLogged(true, resp.token);
-                throw resp.error;
-            }).catch(error => {
-                if (error instanceof Response) throw new Error('Email o nick ya están registrados');
-                return Observable.throw(error);
-            });
+        return this.http.post(this.SERVER_URL + 'register', user)
+            .map(response => this.setLogged(true, response.json().token))
+            .catch(error => Observable.throw(error));
     }
 
-    logout() {
+    logout(): void {
         this.setLogged(false);
     }
 }
