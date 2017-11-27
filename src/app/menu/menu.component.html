@@ -35,8 +35,11 @@
                 </form>
                 <button [disabled]="getDisableLogin()" mat-button (click)="login()" class="button-menu-link button-menu-login">Iniciar sesión</button>
                 <div class="dropdown-divider"></div>
-                <p>¿Nuevo en Isofocus? Regístrate</p>
-                <!-- TODO: HAcer link de registro -->
+                <p>
+                    ¿Nuevo en Isofocus?
+                    <button mat-button data-toggle="modal" data-target="#registerModal">Regístrate</button>
+                </p>
+                <!-- TODO: Hacer link de registro -->
                 <!-- <a class="dropdown-item" href="#">Forgot password?</a> -->
             </div>
         </div>
@@ -57,3 +60,43 @@
         </ng-template>
     </div>
 </nav>
+
+<div class="modal fade" id="registerModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Registrar</h4>
+                <mat-icon class="material-icons close-modal" data-dismiss="modal"> close </mat-icon>
+            </div>
+            <div class="modal-body">
+                <form class="full-width">
+                    <mat-form-field class="full-width">
+                        <input autocomplete="off" matInput name="name" placeholder="Nombre" [(ngModel)]="userRegister.name">
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <input autocomplete="off" matInput name="surname" placeholder="Apellidos" [(ngModel)]="userRegister.surname">
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <input autocomplete="off" matInput name="email" type="email" placeholder="Correo" [(ngModel)]="userRegister.email">
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <input autocomplete="off" matInput name="password" type="password" placeholder="Contraseña" [(ngModel)]="userRegister.password">
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <input autocomplete="off" matInput name="password2" type="password" placeholder="Repite contraseña" [(ngModel)]="password2">
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <input autocomplete="off" matInput name="nick" placeholder="Nick" [(ngModel)]="userRegister.nick">
+                    </mat-form-field>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div [matTooltip]="canRegister()" [matTooltipDisabled]="!canRegister()">
+                    <button type="button" mat-button class="save-button" [disabled]="canRegister()" (click)="register()" data-dismiss="modal">Registrar</button>
+                </div>
+                <button type="button" mat-button data-dismiss="modal">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
