@@ -15,6 +15,7 @@ import { TextService } from './shared/services/text.service';
 import { AuthService } from './shared/services/auth.service';
 import { CanActivateGuard } from './shared/guards/can-activate.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ErrorService } from './shared/services/error.service';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -62,6 +63,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         UserService,
         TextService,
         AuthService,
+        ErrorService,
         CanActivateGuard
     ],
     bootstrap: [AppComponent],

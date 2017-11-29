@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { TextService } from '../../shared/services/text.service';
 import { IText } from '../../shared/interfaces/itext';
+import { ErrorService } from '../../shared/services/error.service';
 declare let $: any;
 
 @Component({
@@ -17,7 +18,8 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
     @ViewChild('pText') pText;
 
     constructor(
-        private textService: TextService
+        private textService: TextService,
+        private errorService: ErrorService
     ) {
         this.textEdit = { title: '' };
     }
@@ -39,7 +41,7 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
                 this.texts = text;
                 this.generateEvent(text);
             },
-            error => console.log(error),
+            error => this.errorService.generateError(error),
             () => this.createCalendar()
         );
     }

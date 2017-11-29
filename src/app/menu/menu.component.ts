@@ -3,6 +3,7 @@ import { AuthService } from '../shared/services/auth.service';
 import { UserService } from '../shared/services/user.service';
 import { IUser } from '../shared/interfaces/iuser';
 import { Router } from '@angular/router';
+import { ErrorService } from '../shared/services/error.service';
 
 @Component({
     selector: 'app-menu',
@@ -21,7 +22,8 @@ export class MenuComponent implements OnInit {
     constructor(
         private authService: AuthService,
         private userService: UserService,
-        private router: Router
+        private router: Router,
+        private errorService: ErrorService
     ) { }
 
     ngOnInit() {
@@ -35,7 +37,10 @@ export class MenuComponent implements OnInit {
     }
 
     login(): void {
-        this.authService.login(this.email, this.password).subscribe(); // TODO: Comprobar cosas.
+        this.authService.login(this.email, this.password).subscribe(
+            () => { }, // TODO: Mostrar cosas
+            error => this.errorService.generateError(error)
+        );
     }
 
     private setLoggedAndUser(logged: boolean): void {
@@ -43,7 +48,7 @@ export class MenuComponent implements OnInit {
         if (logged)
             this.userService.getUser().subscribe(
                 user => this.user = user,
-                error => { } // TODO: Mostrar error
+                error => this.errorService.generateError(error)
             );
         else this.user = null;
     }
@@ -51,10 +56,6 @@ export class MenuComponent implements OnInit {
     logout(): void {
         this.authService.logout();
         this.router.navigate(['/']);
-    }
-
-    showError(): void {
-        // TODO: mostrar error
     }
 
     cantRegister(): boolean | string {
@@ -77,11 +78,14 @@ export class MenuComponent implements OnInit {
         if (!this.cantRegister()) {
             this.authService.register(this.userRegister).subscribe(
                 () => {
-                    this.authService.login(this.userRegister.email, this.userRegister.password).subscribe();
+                    this.authService.login(this.userRegister.email, this.userRegister.password).subscribe(
+                        () => { }, // TODO: Mostrar cosas
+                        error => this.errorService.generateError(error)
+                    );
                     for (const i in this.userRegister) this.userRegister[i] = '';
                     this.password2 = '';
                 },
-                error => console.log(error) // TODO: Mostrar error de por que no se ha podido registrar.
+                error => this.errorService.generateError(error)
             );
         }
     }

@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         this.errorService.error.subscribe(error => {
             this.error = error;
-            setTimeout(() => delete this.error, 10000);
+            setTimeout(() => delete this.error, 7500);
         });
     }
 

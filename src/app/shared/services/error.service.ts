@@ -5,7 +5,7 @@ import { IError } from '../interfaces/error';
 @Injectable()
 export class ErrorService {
 
-    error: EventEmitter<IError> = new EventEmitter();
+    error: EventEmitter<IError> = new EventEmitter<IError>();
 
     constructor() { }
 

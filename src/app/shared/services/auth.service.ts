@@ -32,7 +32,7 @@ export class AuthService {
     private anyLogin(url: string, data: any): Observable<boolean> {
         return this.http.post(url, data)
             .map(response => this.setLogged(true, response.json().token))
-            .catch(error => Observable.throw(error));
+            .catch(error => Observable.throw(error.json().error));
     }
 
     isLogged(): Observable<boolean> {
