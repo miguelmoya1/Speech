@@ -91,8 +91,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <div [matTooltip]="canRegister()" [matTooltipDisabled]="!canRegister()">
-                    <button type="button" mat-button class="save-button" [disabled]="canRegister()" (click)="register()" data-dismiss="modal">Registrar</button>
+                <div [matTooltip]="cantRegister()" [matTooltipDisabled]="!cantRegister()">
+                    <button type="button" mat-button class="save-button" [disabled]="cantRegister()" (click)="register()" data-dismiss="modal">Registrar</button>
                 </div>
                 <button type="button" mat-button data-dismiss="modal">Cerrar</button>
             </div>

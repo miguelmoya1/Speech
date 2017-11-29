@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HttpModule, Http, RequestOptions } from '@angular/http';
 import { AuthConfig, AuthHttp } from 'angular2-jwt';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ListenerComponent } from './listener/listener.component';
 import { MainComponent } from './main/main.component';
@@ -15,6 +14,7 @@ import { UserService } from './shared/services/user.service';
 import { TextService } from './shared/services/text.service';
 import { AuthService } from './shared/services/auth.service';
 import { CanActivateGuard } from './shared/guards/can-activate.guard';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -34,10 +34,10 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     ],
     imports: [
         BrowserModule,
-        BrowserAnimationsModule,
         FormsModule,
         HttpModule,
         SharedModule,
+        BrowserAnimationsModule,
         RouterModule.forRoot([
             {
                 path: 'calendario',

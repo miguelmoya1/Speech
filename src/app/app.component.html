@@ -4,3 +4,8 @@
 <main>
     <router-outlet></router-outlet>
 </main>
+<div class="modal-bottom" *ngIf="error" [@modal-bottom]>
+    <div class="deshacer">
+        <div class="modal-bottom-text">{{error.message}}</div>
+    </div>
+</div>
