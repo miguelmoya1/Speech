@@ -32,8 +32,8 @@
                     <mat-form-field class="full-width">
                         <input autocomplete="off" matInput name="password" type="password" placeholder="Contraseña" [(ngModel)]="password">
                     </mat-form-field>
+                    <button [disabled]="getDisableLogin()" mat-button (click)="login()" class="button-menu-link button-menu-login">Iniciar sesión</button>
                 </form>
-                <button [disabled]="getDisableLogin()" mat-button (click)="login()" class="button-menu-link button-menu-login">Iniciar sesión</button>
                 <div class="dropdown-divider"></div>
                 <p>
                     ¿Nuevo en Isofocus?

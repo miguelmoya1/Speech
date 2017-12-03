@@ -30,6 +30,7 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
         this.textService.newText$.subscribe(
             text => {
                 this.texts.push(text);
+                console.log(this.texts);
                 this.renderEvent(text);
             }
         );
@@ -53,7 +54,7 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
             eventLimit: true,
             eventSources: [this.events],
             eventClick: (event, element) => {
-                this.textEdit = this.texts.find(e => e._id === event.id);
+                this.textEdit = this.texts.find(e => e._id === event._id);
                 $('#editModal').modal();
             },
         });
@@ -70,7 +71,7 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
 
     setEvent(text: IText): {} { // TODO: Interfaz de evento
         return {
-            id: text._id,
+            _id: text._id,
             title: text.title,
             start: text.date_start,
             end: text.date_finish

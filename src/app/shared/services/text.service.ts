@@ -16,10 +16,7 @@ export class TextService {
 
     add(text: IText): Observable<any> {
         return this.authHttp.post(this.SERVER_URL, text)
-            .map(response => {
-                text._id = response.json().insertId;
-                this.newText$.emit(text);
-            })
+            .map(insertText => this.newText$.emit(insertText.json().text))
             .catch(error => Observable.throw(error));
     }
 
