@@ -122,7 +122,8 @@ export class ListenerComponent implements OnInit {
         const text: IText = {
             title: this.title,
             text: this.pText.nativeElement.innerText,
-            date_start: this.dateStart
+            date_start: this.dateStart,
+            date_finish: new Date()
         };
         this.textService.add(text).subscribe(); // FIXME: Ya sabes lo que hay que hacer
         $('#saveTitle').modal('hide');

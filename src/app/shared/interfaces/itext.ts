@@ -1,7 +1,7 @@
 import { IUser } from './iuser';
 
 export interface IText {
-    id?: number;
+    _id?: number;
     fk_user?: number | IUser;
     text?: string;
     title?: string;

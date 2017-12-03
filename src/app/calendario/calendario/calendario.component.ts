@@ -53,7 +53,7 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
             eventLimit: true,
             eventSources: [this.events],
             eventClick: (event, element) => {
-                this.textEdit = this.texts.find(e => e.id === event.id);
+                this.textEdit = this.texts.find(e => e._id === event.id);
                 $('#editModal').modal();
             },
         });
@@ -70,7 +70,7 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
 
     setEvent(text: IText): {} { // TODO: Interfaz de evento
         return {
-            id: text.id,
+            id: text._id,
             title: text.title,
             start: text.date_start,
             end: text.date_finish
@@ -82,10 +82,10 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
         this.textService.update(this.textEdit).subscribe(
             () => {
                 this.texts = this.texts.filter(e => {
-                    if (e.id === this.textEdit.id) e = this.textEdit;
+                    if (e._id === this.textEdit._id) e = this.textEdit;
                     return e;
                 });
-                this.fullCalendar.fullCalendar('removeEvents', this.textEdit.id);
+                this.fullCalendar.fullCalendar('removeEvents', this.textEdit._id);
                 this.renderEvent(this.textEdit);
                 $('#editModal').modal('hide');
             }

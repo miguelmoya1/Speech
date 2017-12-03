@@ -29,7 +29,6 @@ export class MenuComponent implements OnInit {
     ngOnInit() {
         this.userRegister = {};
         this.authService.logged$.subscribe(logged => this.setLoggedAndUser(logged));
-        this.authService.isLogged().subscribe();
     }
 
     getDisableLogin(): boolean {

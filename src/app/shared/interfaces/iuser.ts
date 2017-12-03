@@ -1,12 +1,12 @@
 export interface IUser {
-    id?: number,
-    name?: string,
-    surname?: string,
+    _id?: number;
+    name?: string;
+    surname?: string;
     nick?: string;
-    email?: string,
-    password?: string,
-    date_create?: Date,
-    iat?: number,
-    exp?: number,
-    iss?: number,
+    email?: string;
+    password?: string;
+    date_create?: Date;
+    iat?: number;
+    exp?: number;
+    iss?: number;
 }
