@@ -21,7 +21,7 @@ export class UserService {
             .catch(error => error);
     }
 
-    getUserId(id): Observable<IUser> {
+    getUserId(id: string): Observable<IUser> {
         return this.http.get(this.SERVER_URL + id)
             .map(response => <IUser>response.json().user)
             .catch(error => error);
