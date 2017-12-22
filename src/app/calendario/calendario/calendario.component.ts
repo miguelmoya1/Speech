@@ -30,7 +30,6 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
         this.textService.newText$.subscribe(
             text => {
                 this.texts.push(text);
-                console.log(this.texts);
                 this.renderEvent(text);
             }
         );
@@ -54,7 +53,7 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
             eventLimit: true,
             eventSources: [this.events],
             eventClick: (event, element) => {
-                this.textEdit = this.texts.find(e => e._id === event._id);
+                this.textEdit = this.texts.find(e => e.id === event.id);
                 $('#editModal').modal();
             },
         });
@@ -71,7 +70,7 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
 
     setEvent(text: IText): {} { // TODO: Interfaz de evento
         return {
-            _id: text._id,
+            id: text.id,
             title: text.title,
             start: text.date_start,
             end: text.date_finish
@@ -83,13 +82,21 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
         this.textService.update(this.textEdit).subscribe(
             () => {
                 this.texts = this.texts.filter(e => {
-                    if (e._id === this.textEdit._id) e = this.textEdit;
+                    if (e.id === this.textEdit.id) e = this.textEdit;
                     return e;
                 });
-                this.fullCalendar.fullCalendar('removeEvents', this.textEdit._id);
+                this.fullCalendar.fullCalendar('removeEvents', this.textEdit.id);
                 this.renderEvent(this.textEdit);
-                $('#editModal').modal('hide');
+                this.closeModal();
+            },
+            error => {
+                this.errorService.generateError(error);
+                this.closeModal();
             }
-        ); // TODO: Mostrar algo :D
+        );
+    }
+
+    closeModal() {
+        $('#editModal').modal('hide');
     }
 }

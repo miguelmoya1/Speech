@@ -4,6 +4,7 @@ import { UserService } from '../shared/services/user.service';
 import { IUser } from '../shared/interfaces/iuser';
 import { Router } from '@angular/router';
 import { ErrorService } from '../shared/services/error.service';
+import { NgZone } from '@angular/core';
 
 @Component({
     selector: 'app-menu',
@@ -17,13 +18,15 @@ export class MenuComponent implements OnInit {
     user: IUser;
     userRegister: IUser;
     password2: IUser['password'];
+    first = true;
     emailExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     constructor(
         private authService: AuthService,
         private userService: UserService,
         private router: Router,
-        private errorService: ErrorService
+        private errorService: ErrorService,
+        private zone: NgZone
     ) { }
 
     ngOnInit() {
@@ -44,15 +47,17 @@ export class MenuComponent implements OnInit {
 
     private setLoggedAndUser(logged: boolean): void {
         this.logged = logged;
-        if (logged)
+        if (logged || this.first) {
+            this.first = false;
             this.userService.getUser().subscribe(
                 user => this.user = user,
                 error => this.errorService.generateError(error)
             );
-        else this.user = null;
+        } else this.user = null;
     }
 
     logout(): void {
+        this.first = true;
         this.authService.logout();
         this.router.navigate(['/']);
     }
