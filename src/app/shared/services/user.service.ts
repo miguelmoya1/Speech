@@ -17,9 +17,7 @@ export class UserService {
 
     getUser(): Observable<IUser> {
         if (localStorage.getItem('user')) {
-            console.log('aa');
             return new Observable(subscriber => {
-                console.log(JSON.parse(localStorage.getItem('user')));
                 subscriber.next(JSON.parse(localStorage.getItem('user')));
                 subscriber.complete();
             });
