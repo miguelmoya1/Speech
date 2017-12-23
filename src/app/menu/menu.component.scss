@@ -56,6 +56,13 @@ mat-icon,
 }
 
 nav {
-    padding-right: 25rem;
-    padding-left: 25rem;
+    padding-right: 20%;
+    padding-left: 20%;
+}
+
+@media screen and (max-width: 800px) {
+    nav {
+        padding-right: .5rem;
+        padding-left: .5rem;
+    }
 }

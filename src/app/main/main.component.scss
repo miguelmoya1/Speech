@@ -6,3 +6,14 @@
     display: block;
     margin: 0 auto;
 }
+
+.main {
+    text-align: justify;
+    margin: 3.5rem 20% 1rem 20%;
+}
+
+@media screen and (max-width: 800px) {
+    .main {
+        margin: 3.5rem 1rem 1rem;
+    }
+}
