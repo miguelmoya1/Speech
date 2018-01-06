@@ -1,6 +1,7 @@
-@import '../../shared/styles/colors.scss';
+@import '../../shared/styles/global.scss';
 #fullCalendar {
-    margin: 3.5rem 20% 1rem 20%;
+    margin-top: 3.5rem;
+    margin-bottom: 1rem;
 }
 
 .full-width {
@@ -12,8 +13,4 @@
     font-size: 13px;
 }
 
-@media screen and (max-width: 800px) {
-    #fullCalendar {
-        margin: 3.5rem 1rem 1rem 1rem;
-    }
-}
+@include paddingCenter('#fullCalendar');

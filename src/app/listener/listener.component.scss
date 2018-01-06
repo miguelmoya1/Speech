@@ -1,4 +1,4 @@
-@import '../shared/styles/colors.scss';
+@import '../shared/styles/global.scss';
 .controls {
     margin-bottom: .7rem;
     display: flex;
@@ -9,13 +9,10 @@
     padding: 1rem;
     background-color: $g6;
     margin-top: 3.5rem;
-    margin: 3.5rem 20% 1rem 20%;
-}
-
-@media screen and (max-width: 800px) {
-    .listener-container {
-        margin: 3.5rem 0 1rem;
-    }
+    margin-bottom: 1rem;
+    border-radius: .4rem;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
 .result {
@@ -68,3 +65,5 @@ p:focus {
 .right-control div {
     padding: 0 .1rem;
 }
+
+@include paddingCenter('.listener-container');
