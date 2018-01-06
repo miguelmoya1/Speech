@@ -31,7 +31,7 @@ $borderRadius: '.4rem';
         padding-right: 20%;
         padding-left: 20%;
     }
-    @media screen and (max-width: 800px) {
+    @media screen and (max-width: 991px) {
         #{$class} {
             padding-right: .5rem;
             padding-left: .5rem;
