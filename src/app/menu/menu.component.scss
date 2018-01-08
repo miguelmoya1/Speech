@@ -1,4 +1,4 @@
-@import '../shared/styles/colors.scss';
+@import '../shared/styles/global.scss';
 .navbar {
     background-color: $g0;
     position: fixed;
@@ -55,14 +55,4 @@ mat-icon,
     border-top-color: $g3;
 }
 
-nav {
-    padding-right: 20%;
-    padding-left: 20%;
-}
-
-@media screen and (max-width: 800px) {
-    nav {
-        padding-right: .5rem;
-        padding-left: .5rem;
-    }
-}
+@include paddingCenter('nav');
