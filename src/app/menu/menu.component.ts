@@ -11,6 +11,7 @@ import { NgZone } from '@angular/core';
     templateUrl: './menu.component.html',
     styleUrls: ['./menu.component.scss'],
 })
+
 export class MenuComponent implements OnInit {
     email = '';
     password = '';
@@ -18,7 +19,6 @@ export class MenuComponent implements OnInit {
     user: IUser;
     userRegister: IUser;
     password2: IUser['password'];
-    first = true;
     emailExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     constructor(
@@ -40,25 +40,29 @@ export class MenuComponent implements OnInit {
 
     login(): void {
         this.authService.login(this.email, this.password).subscribe(
-            () => { }, // TODO: Mostrar cosas
+            () => {
+                this.email = '';
+                this.password = '';
+            }, // TODO: Mostrar cosas
             error => this.errorService.generateError(error)
         );
     }
 
     private setLoggedAndUser(logged: boolean): void {
         this.logged = logged;
-        if (logged || this.first) {
-            this.first = false;
+        if (logged) {
             this.userService.getUser().subscribe(
-                user => this.user = user,
+                user => {
+                    this.user = user;
+                    console.log(user)
+                },
                 error => this.errorService.generateError(error)
             );
         } else this.user = null;
     }
 
     logout(): void {
-        this.first = true;
-        this.user = undefined;
+        this.user = null;
         this.authService.logout();
         this.router.navigate(['/']);
     }
@@ -83,10 +87,9 @@ export class MenuComponent implements OnInit {
         if (!this.cantRegister()) {
             this.authService.register(this.userRegister).subscribe(
                 () => {
-                    this.authService.login(this.userRegister.email, this.userRegister.password).subscribe(
-                        () => { }, // TODO: Mostrar cosas
-                        error => this.errorService.generateError(error)
-                    );
+                    this.email = this.userRegister.nick;
+                    this.password = this.userRegister.password;
+                    this.login();
                     for (const i in this.userRegister) this.userRegister[i] = '';
                     this.password2 = '';
                 },

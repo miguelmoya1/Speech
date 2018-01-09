@@ -16,24 +16,9 @@ export class UserService {
     ) { }
 
     getUser(): Observable<IUser> {
-        if (localStorage.getItem('user')) {
-            return new Observable(subscriber => {
-                subscriber.next(JSON.parse(localStorage.getItem('user')));
-                subscriber.complete();
-            });
-        } else {
-            return this.http.get(this.SERVER_URL)
-                .map(response => {
-                    const user = response.json().user;
-                    localStorage.setItem('user', JSON.stringify(user));
-                    return user;
-                })
-                .catch((error: Response) => Observable.throw(error));
-        }
-
-        // return this.http.get(this.SERVER_URL)
-        //     .map(response => <IUser>response.json().user)
-        //     .catch(error => error);
+        return this.http.get(this.SERVER_URL)
+            .map(response => <IUser>response.json().user)
+            .catch(error => error);
     }
 
     getUserId(id: string): Observable<IUser> {
