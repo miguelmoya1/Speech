@@ -6,7 +6,6 @@ import { AuthService } from '../shared/services/auth.service';
 import { IUser } from '../shared/interfaces/iuser';
 import { UserService } from '../shared/services/user.service';
 declare let $: any;
-declare let speechSynthesis: any;
 declare let webkitSpeechRecognition: any; // FIXME: A implementar la interfaz
 
 @Component({
