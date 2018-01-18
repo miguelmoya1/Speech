@@ -53,25 +53,30 @@ export class ListenerComponent implements OnInit {
             this.recognition.onerror = event => { };
 
             this.recognition.onend = () => {
-                this.ngZone.run(() => {
-                    this.recognizing = false;
-                });
+                if (window.innerWidth <= 810) {
+                    this.ngZone.run(() => this.actualText += this.textRrecognizing);
+                    this.textRrecognizing = ' ';
+                }
+                this.ngZone.run(() => this.recognizing = false);
             };
 
-            this.recognition.onresult = event => {
-                for (let i = event.resultIndex; i < event.results.length; i++) {
-                    this.ngZone.run(() => {
-                        this.textRrecognizing = event.results[i][0].transcript;
-                    });
-                }
-                // TODO: Comprobar si ha pasado mas de X tiempo y si es así añadirlo, para que no se quede bloqueado.
-                if (event.results[event.results.length - 1] && event.results[event.results.length - 1].isFinal) {
-                    this.ngZone.run(() => {
-                        this.actualText += this.textRrecognizing.charAt(0).toLocaleUpperCase() + this.textRrecognizing.slice(1);
-                        this.textRrecognizing = '';
-                    });
-                }
-            };
+            if (window.innerWidth <= 810) {
+                this.recognition.onresult = event => {
+                    if (event.results[event.results.length - 1]) this.textRrecognizing = event.results[event.results.length - 1][0].transcript;
+                };
+            } else {
+                this.recognition.onresult = event => {
+                    for (let i = event.resultIndex; i < event.results.length; i++) this.ngZone.run(() => this.textRrecognizing = event.results[i][0].transcript);
+
+                    if (event.results[event.results.length - 1] && event.results[event.results.length - 1].isFinal) {
+                        this.ngZone.run(() => {
+                            this.actualText += this.textRrecognizing.charAt(0).toLocaleUpperCase() + this.textRrecognizing.slice(1);
+                            this.textRrecognizing = ' ';
+                        });
+                    }
+                };
+            }
+
         }
     }
 
@@ -94,6 +99,8 @@ export class ListenerComponent implements OnInit {
             this.recognizing = true;
         } else {
             this.recognition.stop();
+            this.actualText += this.textRrecognizing.charAt(0).toLocaleUpperCase() + this.textRrecognizing.slice(1);
+            this.textRrecognizing = '';
             this.recognizing = false;
         }
     }

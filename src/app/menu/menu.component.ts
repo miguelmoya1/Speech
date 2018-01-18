@@ -35,7 +35,7 @@ export class MenuComponent implements OnInit {
     }
 
     getDisableLogin(): boolean {
-        return this.email === '' || this.password === '' || this.password.length < 6; // TODO: contraseña.length poniendo el error en el string
+        return this.email === '' || this.password === '' || this.password.length < 6;
     }
 
     login(): void {
@@ -52,10 +52,7 @@ export class MenuComponent implements OnInit {
         this.logged = logged;
         if (logged) {
             this.userService.getUser().subscribe(
-                user => {
-                    this.user = user;
-                    console.log(user)
-                },
+                user => this.user = user,
                 error => this.errorService.generateError(error)
             );
         } else this.user = null;
@@ -70,15 +67,15 @@ export class MenuComponent implements OnInit {
     cantRegister(): boolean | string {
         if (this.userRegister.name && this.userRegister.name.trim() !== '')
             if (this.userRegister.surname && this.userRegister.surname.trim() !== '')
-                // if (this.userRegister.email && this.emailExp.test(this.userRegister.email))
-                if (this.userRegister.password && this.userRegister.password.length >= 6)
-                    if (this.password2 && this.password2 === this.userRegister.password)
-                        if (this.userRegister.nick && this.userRegister.nick.trim() !== '')
-                            return false;
-                        else return 'El nick es necesario'; // TODO: Comprobar en la base de datos que no exista
-                    else return 'Las contraseñas tienen que coincidir';
-                else return 'La contrasña tiene que ser de 6 caracteres mínimos';
-            // else return 'El correo no es válido';
+                if (this.userRegister.email && this.emailExp.test(this.userRegister.email))
+                    if (this.userRegister.password && this.userRegister.password.length >= 6)
+                        if (this.password2 && this.password2 === this.userRegister.password)
+                            if (this.userRegister.nick && this.userRegister.nick.trim() !== '')
+                                return false;
+                            else return 'El nick es necesario'; // TODO: Comprobar en la base de datos que no exista
+                        else return 'Las contraseñas tienen que coincidir';
+                    else return 'La contrasña tiene que ser de 6 caracteres mínimos';
+                else return 'El correo no es válido';
             else return 'El apellido es necesario';
         else return 'El nombre es necesario';
     }
