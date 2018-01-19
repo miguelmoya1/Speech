@@ -10,6 +10,7 @@ import {
     MatDialogModule,
     MatInputModule,
     TooltipComponent,
+    MatSelectModule,
 } from '@angular/material';
 
 @NgModule({
@@ -22,8 +23,10 @@ import {
         MatTooltipModule,
         MatDialogModule,
         MatInputModule,
+        MatSelectModule,
     ],
     exports: [
+        TooltipComponent,
         MatButtonModule,
         MatCheckboxModule,
         MatButtonToggleModule,
@@ -31,7 +34,7 @@ import {
         MatTooltipModule,
         MatDialogModule,
         MatInputModule,
-        TooltipComponent,
+        MatSelectModule,
     ],
     declarations: [
         // TooltipComponent,

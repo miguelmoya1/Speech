@@ -4,6 +4,13 @@
             <button (click)="listen()" matTooltip="{{recognizing ? 'Parar': 'Grabar'}}" mat-mini-fab [ngClass]="{'mic-red' : recognizing, 'mic-green': !recognizing}">
                 <mat-icon class="material-icons mic"> {{recognizing ? 'mic_off': 'mic'}} </mat-icon>
             </button>
+            <mat-form-field>
+                <mat-select placeholder="Idioma" (change)="changeLanguage()" [(value)]="selectedLanguage">
+                    <mat-option *ngFor="let language of languages; let i = index" [value]="i">
+                        {{ language.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
 
         <div class="middle-control">

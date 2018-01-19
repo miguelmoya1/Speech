@@ -66,4 +66,10 @@ p:focus {
     padding: 0 .1rem;
 }
 
+mat-form-field {
+    width: 5rem;
+    margin-left: .5rem;
+    margin-right: -5rem;
+}
+
 @include paddingCenter('.listener-container');

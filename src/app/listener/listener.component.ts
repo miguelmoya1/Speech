@@ -22,6 +22,18 @@ export class ListenerComponent implements OnInit {
     firstTime = true;
     dateStart: Date;
     user: IUser;
+    languages = [{
+        name: 'Español',
+        value: 'es-ES'
+    }, {
+        name: 'Francés',
+        value: 'fr-FR'
+    }, {
+        name: 'English',
+        value: 'en-US'
+    }];
+    selectedLanguage = 0;
+
     @ViewChild('pText') pText;
 
     constructor(
@@ -40,7 +52,7 @@ export class ListenerComponent implements OnInit {
         } else {
             this.recognition = new webkitSpeechRecognition();
 
-            this.recognition.lang = 'es-ES';
+            this.recognition.lang = this.languages[this.selectedLanguage].value;
             this.recognition.continuous = true;
             this.recognition.interimResults = true;
 
@@ -103,6 +115,10 @@ export class ListenerComponent implements OnInit {
             this.textRrecognizing = '';
             this.recognizing = false;
         }
+    }
+
+    changeLanguage() {
+        this.recognition.lang = this.languages[this.selectedLanguage].value;
     }
 
     download(type: string) {
