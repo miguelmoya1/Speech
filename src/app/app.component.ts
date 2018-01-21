@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { IError } from './shared/interfaces/error';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
-import { ErrorService } from './shared/services/error.service';
+import { INotification } from './shared/interfaces/inotification';
+import { NotificationService } from './shared/services/notification.service';
 
 @Component({
     selector: 'app-root',
@@ -22,17 +22,19 @@ import { ErrorService } from './shared/services/error.service';
     ]
 })
 export class AppComponent implements OnInit {
-    error: IError;
+    notification: INotification;
 
     constructor(
-        private errorService: ErrorService
+        private notificationService: NotificationService
     ) { }
 
     ngOnInit() {
-        this.errorService.error.subscribe(error => {
-            this.error = error;
-            setTimeout(() => delete this.error, 7500);
+        this.notificationService.notification$.subscribe(notification => {
+            this.notification = notification;
+            setTimeout(() => delete this.notification, 7500);
         });
+        this.notification = { message: 'updated!', type: 2 };
+        setTimeout(() => delete this.notification, 7500);
     }
 
 }

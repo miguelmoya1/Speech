@@ -6,10 +6,17 @@
     z-index: 999999;
     color: $white;
     padding: .5rem 1rem;
-    background: $red;
     border-top-left-radius: .5rem;
     border-top-right-radius: .5rem;
     transform: translate(-50%);
+}
+
+.modal-bottom.error {
+    background: $red;
+}
+
+.modal-bottom.success {
+    background: $green;
 }
 
 .deshacer {

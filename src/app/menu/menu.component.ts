@@ -3,7 +3,7 @@ import { AuthService } from '../shared/services/auth.service';
 import { UserService } from '../shared/services/user.service';
 import { IUser } from '../shared/interfaces/iuser';
 import { Router } from '@angular/router';
-import { ErrorService } from '../shared/services/error.service';
+import { NotificationService } from '../shared/services/notification.service';
 import { NgZone } from '@angular/core';
 
 @Component({
@@ -22,10 +22,10 @@ export class MenuComponent implements OnInit {
     emailExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     constructor(
+        private notificationService: NotificationService,
         private authService: AuthService,
         private userService: UserService,
         private router: Router,
-        private errorService: ErrorService,
         private zone: NgZone
     ) { }
 
@@ -44,7 +44,7 @@ export class MenuComponent implements OnInit {
                 this.email = '';
                 this.password = '';
             }, // TODO: Mostrar cosas
-            error => this.errorService.generateError(error)
+            error => this.notificationService.generateError(error)
         );
     }
 
@@ -53,7 +53,7 @@ export class MenuComponent implements OnInit {
         if (logged) {
             this.userService.getUser().subscribe(
                 user => this.user = user,
-                error => this.errorService.generateError(error)
+                error => this.notificationService.generateError(error)
             );
         } else this.user = null;
     }
@@ -90,7 +90,7 @@ export class MenuComponent implements OnInit {
                     for (const i in this.userRegister) this.userRegister[i] = '';
                     this.password2 = '';
                 },
-                error => this.errorService.generateError(error)
+                error => this.notificationService.generateError(error)
             );
         }
     }

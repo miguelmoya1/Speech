@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { TextService } from '../../shared/services/text.service';
 import { IText } from '../../shared/interfaces/itext';
-import { ErrorService } from '../../shared/services/error.service';
+import { NotificationService } from '../../shared/services/notification.service';
 declare let $: any;
 
 @Component({
@@ -19,7 +19,7 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
 
     constructor(
         private textService: TextService,
-        private errorService: ErrorService
+        private notificationService: NotificationService
     ) {
         this.textEdit = { title: '' };
     }
@@ -41,7 +41,7 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
                 this.texts = text;
                 this.generateEvent(text);
             },
-            error => this.errorService.generateError(error),
+            error => this.notificationService.generateError(error),
             () => this.createCalendar()
         );
     }
@@ -90,7 +90,7 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
                 this.closeModal();
             },
             error => {
-                this.errorService.generateError(error);
+                this.notificationService.generateError(error);
                 this.closeModal();
             }
         );

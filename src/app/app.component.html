@@ -4,8 +4,9 @@
 <main>
     <router-outlet></router-outlet>
 </main>
-<div class="modal-bottom" *ngIf="error" [@modal-bottom]>
+<div class="modal-bottom" [ngClass]="{'error': notification.type === 1, 'success': notification.type === 2}" *ngIf="notification"
+    [@modal-bottom]>
     <div class="deshacer">
-        <div class="modal-bottom-text">{{error.message}}</div>
+        <div class="modal-bottom-text">{{notification.message}}</div>
     </div>
 </div>

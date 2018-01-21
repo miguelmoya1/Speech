@@ -64,19 +64,18 @@ export class ListenerComponent implements OnInit {
 
             this.recognition.onerror = event => { };
 
-            this.recognition.onend = () => {
-                if (window.innerWidth <= 810) {
+            if (window.innerWidth <= 810) {
+                this.recognition.onend = () => {
                     this.ngZone.run(() => this.actualText += this.textRrecognizing);
                     this.textRrecognizing = ' ';
-                }
-                this.ngZone.run(() => this.recognizing = false);
-            };
+                    this.ngZone.run(() => this.recognizing = false);
+                };
 
-            if (window.innerWidth <= 810) {
                 this.recognition.onresult = event => {
                     if (event.results[event.results.length - 1]) this.textRrecognizing = event.results[event.results.length - 1][0].transcript;
                 };
             } else {
+                this.recognition.onend = () => this.ngZone.run(() => this.recognizing = false);
                 this.recognition.onresult = event => {
                     for (let i = event.resultIndex; i < event.results.length; i++) this.ngZone.run(() => this.textRrecognizing = event.results[i][0].transcript);
 
@@ -88,7 +87,6 @@ export class ListenerComponent implements OnInit {
                     }
                 };
             }
-
         }
     }
 

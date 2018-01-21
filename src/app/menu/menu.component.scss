@@ -44,7 +44,7 @@ mat-icon,
 
 .dropdown-menu {
     background: $g0;
-    padding: 1rem;
+    padding: .2rem;
 }
 
 .full-width {
@@ -53,6 +53,10 @@ mat-icon,
 
 .dropdown-divider {
     border-top-color: $g3;
+}
+
+nav {
+    justify-content: flex-end;
 }
 
 @include paddingCenter('nav');
