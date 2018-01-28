@@ -1,10 +1,7 @@
 import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
-import { SpeechRecognition } from '../shared/interfaces/ISpeechRecognition';
-import { IText } from '../shared/interfaces/itext';
-import { TextService } from '../shared/services/text.service';
-import { AuthService } from '../shared/services/auth.service';
-import { IUser } from '../shared/interfaces/iuser';
-import { UserService } from '../shared/services/user.service';
+import { ISpeechRecognition, IUser, IText } from '../shared/interfaces/exports';
+import { TextService, AuthService, UserService } from '../shared/services/exports.service';
+
 declare let $: any;
 declare let webkitSpeechRecognition: any; // FIXME: A implementar la interfaz
 
@@ -16,7 +13,7 @@ declare let webkitSpeechRecognition: any; // FIXME: A implementar la interfaz
 export class ListenerComponent implements OnInit {
     actualText = '';
     textRrecognizing = '';
-    recognition: SpeechRecognition;
+    recognition: ISpeechRecognition;
     recognizing = false;
     title = '';
     firstTime = true;

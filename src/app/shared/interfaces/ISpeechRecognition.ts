@@ -1,4 +1,4 @@
-export interface SpeechRecognition {
+export interface ISpeechRecognition {
 
     // recognition parameters
     grammars: SpeechGrammarList;

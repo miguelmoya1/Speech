@@ -1,10 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../shared/services/auth.service';
-import { UserService } from '../shared/services/user.service';
-import { IUser } from '../shared/interfaces/iuser';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
-import { NotificationService } from '../shared/services/notification.service';
-import { NgZone } from '@angular/core';
+import { IUser } from '../shared/interfaces';
+import { NotificationService, AuthService, UserService } from '../shared/services';
 
 @Component({
     selector: 'app-menu',

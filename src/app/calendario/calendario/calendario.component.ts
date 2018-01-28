@@ -1,8 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
-import { TextService } from '../../shared/services/text.service';
-import { IText } from '../../shared/interfaces/itext';
-import { NotificationService } from '../../shared/services/notification.service';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { IText } from '../../shared/interfaces/exports';
+import { TextService, NotificationService } from '../../shared/services/exports.service';
 declare let $: any;
 
 @Component({
@@ -10,6 +8,7 @@ declare let $: any;
     templateUrl: './calendario.component.html',
     styleUrls: ['./calendario.component.scss']
 })
+
 export class CalendarioComponent implements OnInit, AfterViewInit {
     fullCalendar;
     events;
