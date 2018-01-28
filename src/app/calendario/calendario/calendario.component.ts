@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { IText } from '../../shared/interfaces/exports';
-import { TextService, NotificationService } from '../../shared/services/exports.service';
+import { IText } from '../../shared/interfaces';
+import { TextService, NotificationService } from '../../shared/services';
 declare let $: any;
 
 @Component({
@@ -11,7 +11,7 @@ declare let $: any;
 
 export class CalendarioComponent implements OnInit, AfterViewInit {
     fullCalendar;
-    events;
+    events: IText[];
     texts: IText[] = [];
     textEdit: IText;
     @ViewChild('pText') pText;

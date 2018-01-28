@@ -29,12 +29,12 @@ export class AppComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.notificationService.notification$.subscribe(notification => {
-            this.notification = notification;
-            setTimeout(() => delete this.notification, 7500);
-        });
-        this.notification = { message: 'updated!', type: 2 };
-        setTimeout(() => delete this.notification, 7500);
+        this.notificationService.notification$.subscribe(
+            notification => {
+                this.notification = notification;
+                setTimeout(() => delete this.notification, 7500);
+            }
+        );
     }
 
 }

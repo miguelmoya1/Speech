@@ -1,6 +1,6 @@
 import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
-import { ISpeechRecognition, IUser, IText } from '../shared/interfaces/exports';
-import { TextService, AuthService, UserService } from '../shared/services/exports.service';
+import { ISpeechRecognition, IUser, IText } from '../shared/interfaces';
+import { TextService, AuthService, UserService } from '../shared/services';
 
 declare let $: any;
 declare let webkitSpeechRecognition: any; // FIXME: A implementar la interfaz
