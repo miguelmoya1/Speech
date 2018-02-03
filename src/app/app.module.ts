@@ -8,14 +8,11 @@ import { AuthConfig, AuthHttp } from 'angular2-jwt';
 
 import { ListenerComponent } from './listener/listener.component';
 import { MainComponent } from './main/main.component';
-import { SharedModule } from './shared/shared.module';
 import { MenuComponent } from './menu/menu.component';
-import { UserService } from './shared/services/user.service';
-import { TextService } from './shared/services/text.service';
-import { AuthService } from './shared/services/auth.service';
+import { SharedModule } from './shared/shared.module';
 import { CanActivateGuard } from './shared/guards/can-activate.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NotificationService } from './shared/services/notification.service';
+import { UserService, TextService, AuthService, NotificationService } from './shared/services';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
