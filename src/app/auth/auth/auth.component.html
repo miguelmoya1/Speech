@@ -1,0 +1,40 @@
+<div class="main-container">
+    <div class="login-container">
+        <h2>Login</h2>
+        <form class="login">
+            <mat-form-field class="full-width">
+                <input autocomplete="off" matInput name="email" placeholder="Correo electronico o nick" [(ngModel)]="email">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input autocomplete="off" matInput name="password" type="password" placeholder="Contraseña" [(ngModel)]="password">
+            </mat-form-field>
+            <button [disabled]="getDisableLogin()" mat-button (click)="login()" class="button-login">Iniciar sesión</button>
+        </form>
+    </div>
+
+    <div class="register-container">
+        <h2>Registro</h2>
+        <form class="register">
+            <mat-form-field class="full-width">
+                <input autocomplete="off" matInput name="name" placeholder="Nombre" [(ngModel)]="userRegister.name">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input autocomplete="off" matInput name="surname" placeholder="Apellidos" [(ngModel)]="userRegister.surname">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input autocomplete="off" matInput name="email" type="email" placeholder="Correo" [(ngModel)]="userRegister.email">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input autocomplete="off" matInput name="password" type="password" placeholder="Contraseña" [(ngModel)]="userRegister.password">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input autocomplete="off" matInput name="password2" type="password" placeholder="Repite contraseña" [(ngModel)]="password2">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input autocomplete="off" matInput name="nick" placeholder="Nick" [(ngModel)]="userRegister.nick">
+            </mat-form-field>
+            <button [matTooltip]="cantRegister()" [matTooltipDisabled]="!cantRegister()" type="button" mat-button class="register-button"
+                [disabled]="cantRegister()" (click)="register()" data-dismiss="modal">Registrar</button>
+        </form>
+    </div>
+</div>

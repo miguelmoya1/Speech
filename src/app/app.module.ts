@@ -13,7 +13,6 @@ import { SharedModule } from './shared/shared.module';
 import { CanActivateGuard } from './shared/guards/can-activate.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserService, TextService, AuthService, NotificationService } from './shared/services';
-import { AuthComponent } from './auth/auth.component';
 import { CantActivateLoggedGuard } from './shared/guards/cant-activate-logged.guard';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -31,7 +30,6 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         ListenerComponent,
         MainComponent,
         MenuComponent,
-        AuthComponent,
     ],
     imports: [
         BrowserModule,
@@ -46,7 +44,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         }, {
             path: 'auth',
             canActivate: [CantActivateLoggedGuard],
-            component: AuthComponent
+            loadChildren: './auth/auth.module#AuthModule'
         }, {
             path: '',
             component: MainComponent
