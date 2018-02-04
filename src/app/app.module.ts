@@ -13,6 +13,7 @@ import { SharedModule } from './shared/shared.module';
 import { CanActivateGuard } from './shared/guards/can-activate.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserService, TextService, AuthService, NotificationService } from './shared/services';
+import { AuthComponent } from './auth/auth.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -29,6 +30,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         ListenerComponent,
         MainComponent,
         MenuComponent,
+        AuthComponent,
     ],
     imports: [
         BrowserModule,
@@ -36,21 +38,21 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         HttpModule,
         SharedModule,
         BrowserAnimationsModule,
-        RouterModule.forRoot([
-            {
-                path: 'calendario',
-                canActivate: [CanActivateGuard],
-                loadChildren: './calendario/calendario.module#CalendarioModule'
-            },
-            {
-                path: '',
-                component: MainComponent
-            },
-            {
-                path: '**',
-                redirectTo: ''
-            },
-        ]),
+        RouterModule.forRoot([{
+            path: 'calendario',
+            canActivate: [CanActivateGuard],
+            loadChildren: './calendario/calendario.module#CalendarioModule'
+        }, {
+            path: 'auth',
+            // canActivate: [CanActivateGuard],
+            component: AuthComponent
+        }, {
+            path: '',
+            component: MainComponent
+        }, {
+            path: '**',
+            redirectTo: ''
+        }]),
     ],
     providers: [{
         provide: AuthHttp,

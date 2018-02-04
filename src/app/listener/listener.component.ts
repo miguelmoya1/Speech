@@ -61,7 +61,7 @@ export class ListenerComponent implements OnInit {
 
             this.recognition.onerror = event => { };
 
-            if (window.innerWidth <= 810) {
+            if ((<any>window).innerWidth <= 810) {
                 this.recognition.onend = () => {
                     this.ngZone.run(() => this.actualText += this.textRrecognizing);
                     this.textRrecognizing = ' ';

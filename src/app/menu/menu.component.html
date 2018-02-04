@@ -1,4 +1,35 @@
-<nav class="navbar navbar-expand-lg fixed-top navbar-light">
+<nav class="nav-top">
+    <button mat-mini-fab (click)="menuOpen = !menuOpen" class="button-show-menu">
+        <mat-icon>menu</mat-icon>
+    </button>
+</nav>
+<nav *ngIf="menuOpen" [@leftNav] class="nav-left">
+    <div *ngIf="!logged" class="nav-profile">
+        <div class="nav-profile-show">
+            <div class="nav-image-profile">{{setName('nombre del susodicho')}}</div>
+            <p class="nav-user-name">
+                nombre del susodicho
+            </p>
+        </div>
+        <img src="assets/img/menu.png" class="nav-profile-image" alt="image-menu">
+    </div>
+    <div class="nav-links">
+        <button [routerLink]="['/']" mat-button class="nav-link">
+            <mat-icon> home </mat-icon> Inicio
+        </button>
+        <button [routerLink]="'/calendario'" mat-button class="nav-link">
+            <mat-icon> date_range </mat-icon> Calendario
+        </button>
+        <button *ngIf="!logged" [routerLink]="'/auth'" mat-button class="nav-link">
+            <mat-icon> person </mat-icon> Login/Registro
+        </button>
+    </div>
+</nav>
+
+
+
+
+<!-- <nav class="navbar navbar-expand-lg fixed-top navbar-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu"
         aria-expanded="false" aria-label="Toggle navigation">
         <mat-icon>menu</mat-icon>
@@ -38,7 +69,6 @@
                     ¿Nuevo en Isofocus?
                 </p>
                 <button mat-button data-toggle="modal" data-target="#registerModal">Regístrate</button>
-                <!-- <a class="dropdown-item" href="#">Forgot password?</a> -->
             </div>
         </div>
         <ng-template #userShow>
@@ -97,4 +127,4 @@
 
         </div>
     </div>
-</div>
+</div> -->
