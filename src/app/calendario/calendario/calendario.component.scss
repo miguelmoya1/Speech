@@ -13,4 +13,16 @@
     font-size: 13px;
 }
 
+.modal-edit-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: .5rem;
+}
+
+.close-modal {
+    color: $red;
+    cursor: pointer;
+}
+
 @include paddingCenter('#fullCalendar');

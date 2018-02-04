@@ -14,6 +14,7 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
     events: IText[];
     texts: IText[] = [];
     textEdit: IText;
+    editModalOpen = false;
     @ViewChild('pText') pText;
 
     constructor(
@@ -53,7 +54,7 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
             eventSources: [this.events],
             eventClick: (event, element) => {
                 this.textEdit = this.texts.find(e => e.id === event.id);
-                $('#editModal').modal();
+                this.editModalOpen = !this.editModalOpen;
             },
         });
     }
@@ -96,6 +97,6 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
     }
 
     closeModal() {
-        $('#editModal').modal('hide');
+        this.editModalOpen = !this.editModalOpen;
     }
 }

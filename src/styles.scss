@@ -88,8 +88,9 @@ input {
     color: $g7;
 }
 
+// MY MODAL
 .full-div-modal {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
@@ -97,4 +98,17 @@ input {
     background: $g9;
     opacity: .5;
     z-index: 9998;
+}
+
+.modal-container {
+    width: 40%;
+    left: 30%;
+    top: 10%;
+    background-color: $g0;
+    position: fixed;
+    z-index: 9999;
+    padding: 1rem;
+    border-radius: $borderRadius;
+    display: flex;
+    flex-direction: column;
 }
