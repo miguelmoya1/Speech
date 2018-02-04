@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IUser } from '../../shared/interfaces';
 import { AuthService } from '../../shared/services';
 import { NotificationService } from '../../shared/services/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-auth',
@@ -19,7 +20,8 @@ export class AuthComponent implements OnInit {
 
     constructor(
         private authService: AuthService,
-        private notificationService: NotificationService
+        private notificationService: NotificationService,
+        private router: Router
     ) { }
 
     ngOnInit() {
@@ -35,7 +37,8 @@ export class AuthComponent implements OnInit {
             () => {
                 this.email = '';
                 this.password = '';
-            }, // TODO: Mostrar cosas
+                this.router.navigate(['/calendario']);
+            },
             error => this.notificationService.generateError(error)
         );
     }
