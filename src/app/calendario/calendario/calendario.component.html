@@ -2,11 +2,11 @@
 
 <div class="edit-modal" *ngIf="editModalOpen">
     <div class="modal-container">
-        <div class="modal-edit-title">
-            <h4 class="modal-title" *ngIf="textEdit">Editando {{textEdit.title}}</h4>
-            <mat-icon class="material-icons close-modal" (click)="editModalOpen = !editModalOpen"> close </mat-icon>
+        <div class="modal-title">
+            <h4 *ngIf="textEdit">Editando {{textEdit.title}}</h4>
+            <mat-icon class="modal-close" (click)="editModalOpen = !editModalOpen"> close </mat-icon>
         </div>
-        <div class="modal-edit-body">
+        <div class="modal-body">
             <form class="form" *ngIf="textEdit">
                 <mat-form-field class="full-width">
                     <input autocomplete="off" class="full-width" matInput name="title" placeholder="Titulo" [(ngModel)]="textEdit.title">
@@ -18,7 +18,7 @@
             </form>
         </div>
 
-        <div class="modal-edit-footer">
+        <div class="modal-footer">
             <button type="button" mat-button class="save-button" (click)="updateText()">Guardar</button>
             <button type="button" mat-button (click)="editModalOpen = !editModalOpen">Cerrar</button>
         </div>

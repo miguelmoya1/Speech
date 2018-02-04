@@ -43,12 +43,12 @@
 
 <div *ngIf="modalTitleOpen" class="modal-listener">
     <div class="modal-container">
-        <form class="form-title">
+        <form class="modal-title">
             <mat-form-field class="full-width">
                 <input autocomplete="off" matInput name="title" placeholder="Titulo" [(ngModel)]="title">
             </mat-form-field>
         </form>
-        <div class="modal-title-footer">
+        <div class="modal-footer">
             <button type="button" mat-button class="save-button" [disabled]="title === ''" (click)="saveTitle()">Guardar</button>
             <button type="button" mat-button (click)="modalTitleOpen = !modalTitleOpen">Cerrar</button>
         </div>
