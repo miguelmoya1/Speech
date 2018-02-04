@@ -4,13 +4,14 @@
     </button>
 </nav>
 <nav *ngIf="menuOpen" [@leftNav] class="nav-left">
-    <div *ngIf="!logged" class="nav-profile">
+    <div *ngIf="logged" class="nav-profile">
         <div class="nav-profile-show">
             <div class="nav-image-profile">{{setName('nombre del susodicho')}}</div>
             <p class="nav-user-name">
                 nombre del susodicho
             </p>
         </div>
+        <button mat-button class="logout" (click)="logout()"> Cerrar sesión </button>
         <img src="assets/img/menu.png" class="nav-profile-image" alt="image-menu">
     </div>
     <div class="nav-links">
