@@ -87,3 +87,14 @@ input {
 .mat-tab-label {
     color: $g7;
 }
+
+.full-div-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: $g9;
+    opacity: .5;
+    z-index: 9998;
+}

@@ -54,6 +54,7 @@ p:focus {
     width: 100%;
 }
 
+.form-title,
 .full-width {
     width: 100%;
 }
@@ -70,6 +71,23 @@ mat-form-field {
     width: 5rem;
     margin-left: .5rem;
     margin-right: -5rem;
+}
+
+.modal-container {
+    width: 40%;
+    left: 30%;
+    top: 10%;
+    background-color: $g0;
+    position: absolute;
+    z-index: 9999;
+    padding: 1rem;
+    border-radius: $borderRadius;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-title-footer {
+    margin-top: .2rem;
 }
 
 @include paddingCenter('.listener-container');

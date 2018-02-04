@@ -15,8 +15,9 @@ export class ListenerComponent implements OnInit {
     textRrecognizing = '';
     recognition: ISpeechRecognition;
     recognizing = false;
-    title = '';
     firstTime = true;
+    modalTitleOpen = false;
+    title = '';
     dateStart: Date;
     user: IUser;
     languages = [{
@@ -143,7 +144,7 @@ export class ListenerComponent implements OnInit {
             date_finish: new Date()
         };
         this.textService.add(text).subscribe(); // FIXME: Ya sabes lo que hay que hacer
-        $('#saveTitle').modal('hide');
+        this.modalTitleOpen = false;
         this.title = '';
         this.actualText = '';
         this.firstTime = true;

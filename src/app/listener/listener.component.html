@@ -15,7 +15,7 @@
 
         <div class="middle-control">
             <div [matTooltip]="user ? 'Graba algo para guardar' : 'Inicia sesión para poder guardar'" [matTooltipDisabled]="user && actualText !== ''">
-                <button [disabled]="actualText === '' || !user" mat-mini-fab matTooltip="Guardar" data-toggle="modal" data-target="#saveTitle"
+                <button [disabled]="actualText === '' || !user" mat-mini-fab matTooltip="Guardar" (click)="modalTitleOpen = !modalTitleOpen"
                     class="save-button">
                     <mat-icon> save </mat-icon>
                 </button>
@@ -41,25 +41,17 @@
     </div>
 </div>
 
-<div class="modal fade" id="saveTitle">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Titulo</h4>
-                <mat-icon class="material-icons close-modal" data-dismiss="modal"> close </mat-icon>
-            </div>
-            <div class="modal-body">
-                <form class="form">
-                    <mat-form-field class="full-width">
-                        <input autocomplete="off" matInput name="title" placeholder="Titulo" [(ngModel)]="title">
-                    </mat-form-field>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" mat-button class="save-button" [disabled]="title === ''" (click)="saveTitle()" data-dismiss="modal">Guardar</button>
-                <button type="button" mat-button data-dismiss="modal">Cerrar</button>
-            </div>
-
+<div *ngIf="modalTitleOpen" class="modal-listener">
+    <div class="modal-container">
+        <form class="form-title">
+            <mat-form-field class="full-width">
+                <input autocomplete="off" matInput name="title" placeholder="Titulo" [(ngModel)]="title">
+            </mat-form-field>
+        </form>
+        <div class="modal-title-footer">
+            <button type="button" mat-button class="save-button" [disabled]="title === ''" (click)="saveTitle()">Guardar</button>
+            <button type="button" mat-button (click)="modalTitleOpen = !modalTitleOpen">Cerrar</button>
         </div>
     </div>
+    <div class="full-div-modal" (click)="modalTitleOpen = !modalTitleOpen"></div>
 </div>
