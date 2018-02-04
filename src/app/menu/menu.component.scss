@@ -14,14 +14,18 @@ nav.nav-top {
 }
 
 nav.nav-left {
-    background-color: $g2;
+    background-color: $g0;
     width: $menuWidth;
-    z-index: 999;
+    z-index: 99;
     height: 100vh;
     position: fixed;
     -webkit-box-shadow: 3px 2px 15px -2px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 3px 2px 15px -2px rgba(0, 0, 0, 0.75);
     box-shadow: 3px 2px 15px -2px rgba(0, 0, 0, 0.75);
+}
+
+.mat-button[disabled] {
+    color: $g6;
 }
 
 .nav-profile {
@@ -54,7 +58,9 @@ nav.nav-left {
 }
 
 .nav-image-profile {
-    padding: .7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 3rem;
     width: 3rem;
     color: $g7;
@@ -67,6 +73,8 @@ nav.nav-left {
 }
 
 .nav-user-name {
+    display: inline-block;
+    width: 10rem;
     text-overflow: ellipsis;
     margin: 0;
 }
@@ -82,8 +90,8 @@ nav.nav-left {
     position: fixed;
     width: 100vw;
     height: 100vh;
-    opacity: .4;
+    opacity: .6;
     background: $g9;
     top: 3.25rem;
-    left: $menuWidth;
+    z-index: 98;
 }
