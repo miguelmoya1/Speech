@@ -11,6 +11,7 @@ import {
     MatInputModule,
     TooltipComponent,
     MatSelectModule,
+    MatTabsModule,
 } from '@angular/material';
 
 @NgModule({
@@ -24,6 +25,7 @@ import {
         MatDialogModule,
         MatInputModule,
         MatSelectModule,
+        MatTabsModule,
     ],
     exports: [
         TooltipComponent,
@@ -35,6 +37,7 @@ import {
         MatDialogModule,
         MatInputModule,
         MatSelectModule,
+        MatTabsModule,
     ],
     declarations: [
         // TooltipComponent,
