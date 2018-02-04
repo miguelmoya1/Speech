@@ -1,62 +1,97 @@
 @import '../shared/styles/global.scss';
-.navbar {
-    background-color: $g0;
+nav.nav-top {
     position: fixed;
+    top: 0;
+    background-color: $g0;
     width: 100%;
-    z-index: 1040;
+    z-index: 999;
+    height: $topSeparation;
 }
 
-a {
-    text-decoration: none;
+.button-show-menu {
+    margin: .4rem;
+    background-color: $g0;
 }
 
-mat-icon,
+nav.nav-left {
+    background-color: $g0;
+    width: $menuWidth;
+    z-index: 99;
+    height: 100vh;
+    position: fixed;
+    -webkit-box-shadow: 3px 2px 15px -2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 3px 2px 15px -2px rgba(0, 0, 0, 0.75);
+    box-shadow: 3px 2px 15px -2px rgba(0, 0, 0, 0.75);
+}
+
 .mat-button[disabled] {
     color: $g6;
 }
 
-.button-menu-link {
-    display: flex;
+.nav-profile {
+    width: 100%;
+    height: 11.3rem;
 }
 
-.menu-login {
-    min-width: 15rem;
-    text-align: center;
+.nav-links {
+    width: 100%;
 }
 
-.login-menu {
+.nav-link {
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    height: 3rem;
+}
+
+.nav-profile-image {
+    width: 15rem;
+}
+
+.nav-profile-show {
+    position: absolute;
+    color: white;
+    width: 100%;
+    display: flex;
     align-items: center;
+    justify-content: space-between;
+    padding: 2rem .5rem;
 }
 
-.button-menu-login {
-    display: inline-block;
-    width: 100%;
-}
-
-.login-button {
-    max-width: 15rem;
-    white-space: nowrap;
-    overflow: hidden !important;
-    text-overflow: ellipsis;
-}
-
-.dropdown-menu {
+.nav-image-profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    width: 3rem;
+    color: $g7;
+    font-weight: bold;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 50%;
+    background-size: 100% auto;
     background: $g0;
-    padding: .2rem;
 }
 
-.full-width {
+.nav-user-name {
+    display: inline-block;
+    width: 10rem;
+    text-overflow: ellipsis;
+    margin: 0;
+}
+
+.logout {
+    position: absolute;
+    top: 7.5rem;
     width: 100%;
+    color: white;
 }
 
-.dropdown-divider {
-    border-top-color: $g3;
+.full-div-menu {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    opacity: .6;
+    background: $g9;
+    top: 3.25rem;
+    z-index: 98;
 }
-
-nav {
-    justify-content: flex-end;
-}
-
-@include paddingCenter('nav');

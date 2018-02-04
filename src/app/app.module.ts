@@ -8,14 +8,12 @@ import { AuthConfig, AuthHttp } from 'angular2-jwt';
 
 import { ListenerComponent } from './listener/listener.component';
 import { MainComponent } from './main/main.component';
-import { SharedModule } from './shared/shared.module';
 import { MenuComponent } from './menu/menu.component';
-import { UserService } from './shared/services/user.service';
-import { TextService } from './shared/services/text.service';
-import { AuthService } from './shared/services/auth.service';
+import { SharedModule } from './shared/shared.module';
 import { CanActivateGuard } from './shared/guards/can-activate.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NotificationService } from './shared/services/notification.service';
+import { UserService, TextService, AuthService, NotificationService } from './shared/services';
+import { CantActivateLoggedGuard } from './shared/guards/cant-activate-logged.guard';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -39,21 +37,21 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         HttpModule,
         SharedModule,
         BrowserAnimationsModule,
-        RouterModule.forRoot([
-            {
-                path: 'calendario',
-                canActivate: [CanActivateGuard],
-                loadChildren: './calendario/calendario.module#CalendarioModule'
-            },
-            {
-                path: '',
-                component: MainComponent
-            },
-            {
-                path: '**',
-                redirectTo: ''
-            },
-        ]),
+        RouterModule.forRoot([{
+            path: 'calendario',
+            canActivate: [CanActivateGuard],
+            loadChildren: './calendario/calendario.module#CalendarioModule'
+        }, {
+            path: 'auth',
+            canActivate: [CantActivateLoggedGuard],
+            loadChildren: './auth/auth.module#AuthModule'
+        }, {
+            path: '',
+            component: MainComponent
+        }, {
+            path: '**',
+            redirectTo: ''
+        }]),
     ],
     providers: [{
         provide: AuthHttp,
@@ -64,7 +62,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         TextService,
         AuthService,
         NotificationService,
-        CanActivateGuard
+        CanActivateGuard,
+        CantActivateLoggedGuard
     ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
