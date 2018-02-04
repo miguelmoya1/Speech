@@ -15,7 +15,7 @@ nav.nav-top {
 
 nav.nav-left {
     background-color: $g2;
-    width: 15rem;
+    width: $menuWidth;
     z-index: 999;
     height: 100vh;
     position: fixed;
@@ -76,4 +76,14 @@ nav.nav-left {
     top: 7.5rem;
     width: 100%;
     color: white;
+}
+
+.full-div-menu {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    opacity: .4;
+    background: $g9;
+    top: 3.25rem;
+    left: $menuWidth;
 }
