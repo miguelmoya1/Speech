@@ -14,6 +14,7 @@ import { CanActivateGuard } from './shared/guards/can-activate.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserService, TextService, AuthService, NotificationService } from './shared/services';
 import { AuthComponent } from './auth/auth.component';
+import { CantActivateLoggedGuard } from './shared/guards/cant-activate-logged.guard';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -44,7 +45,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
             loadChildren: './calendario/calendario.module#CalendarioModule'
         }, {
             path: 'auth',
-            // canActivate: [CanActivateGuard],
+            canActivate: [CantActivateLoggedGuard],
             component: AuthComponent
         }, {
             path: '',
@@ -63,7 +64,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         TextService,
         AuthService,
         NotificationService,
-        CanActivateGuard
+        CanActivateGuard,
+        CantActivateLoggedGuard
     ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
