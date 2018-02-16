@@ -15,21 +15,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-1172067222266495",
-            enable_page_level_ads: true
-        });
+    <script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js">
+
+
     </script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyD6wLtmXelrRv33EY_0EE49O9LXXiFpo8Q",
+            authDomain: "isofocus-195419.firebaseapp.com",
+            databaseURL: "https://isofocus-195419.firebaseio.com",
+            projectId: "isofocus-195419",
+            storageBucket: "isofocus-195419.appspot.com",
+            messagingSenderId: "889751494468"
+        };
+        firebase.initializeApp(config);
+
+    </script>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113458408-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
         gtag('js', new Date());
 
         gtag('config', 'UA-113458408-1');
+
     </script>
 </head>
 
