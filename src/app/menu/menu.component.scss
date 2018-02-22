@@ -6,11 +6,10 @@ nav.nav-top {
     width: 100%;
     z-index: 999;
     height: $topSeparation;
-}
-
-.button-show-menu {
-    margin: .4rem;
-    background-color: $g0;
+    .button-show-menu {
+        margin: .4rem;
+        background-color: $g0;
+    }
 }
 
 nav.nav-left {
@@ -22,68 +21,59 @@ nav.nav-left {
     -webkit-box-shadow: 3px 2px 15px -2px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 3px 2px 15px -2px rgba(0, 0, 0, 0.75);
     box-shadow: 3px 2px 15px -2px rgba(0, 0, 0, 0.75);
-}
-
-.mat-button[disabled] {
-    color: $g6;
-}
-
-.nav-profile {
-    width: 100%;
-    height: 11.3rem;
-}
-
-.nav-links {
-    width: 100%;
-}
-
-.nav-link {
-    width: 100%;
-    display: flex;
-    height: 3rem;
-}
-
-.nav-profile-image {
-    width: 15rem;
-}
-
-.nav-profile-show {
-    position: absolute;
-    color: white;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 2rem .5rem;
-}
-
-.nav-image-profile {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 3rem;
-    width: 3rem;
-    color: $g7;
-    font-weight: bold;
-    background-repeat: no-repeat;
-    background-position: 50%;
-    border-radius: 50%;
-    background-size: 100% auto;
-    background: $g0;
-}
-
-.nav-user-name {
-    display: inline-block;
-    width: 10rem;
-    text-overflow: ellipsis;
-    margin: 0;
-}
-
-.logout {
-    position: absolute;
-    top: 7.5rem;
-    width: 100%;
-    color: white;
+    .nav-profile {
+        width: 100%;
+        height: 11.3rem;
+        >.nav-profile-show {
+            position: absolute;
+            color: white;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2rem .5rem;
+            >.nav-image-profile {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 3rem;
+                width: 3rem;
+                color: $g7;
+                font-weight: bold;
+                background-repeat: no-repeat;
+                background-position: 50%;
+                border-radius: 50%;
+                background-size: 100% auto;
+                background: $g0;
+            }
+            >.nav-user-name {
+                display: inline-block;
+                width: 10rem;
+                text-overflow: ellipsis;
+                margin: 0;
+            }
+        }
+        >.logout {
+            position: absolute;
+            top: 7.5rem;
+            width: 100%;
+            color: white;
+        }
+        >.nav-profile-image {
+            width: 15rem;
+        }
+    }
+    .nav-links {
+        width: 100%;
+        .nav-link {
+            width: 100%;
+            display: flex;
+            height: 3rem;
+        }
+        .mat-button[disabled] {
+            color: $g6;
+        }
+    }
 }
 
 .full-div-menu {

@@ -1,16 +1,14 @@
 @import '../shared/styles/global.scss';
-.container p {
-    text-align: justify;
-}
-
-.logo-main {
-    display: block;
-    margin: 0 auto;
-}
-
 .main {
     text-align: justify;
     margin: 3.5rem 0 1rem 0;
+    .logo-main {
+        display: block;
+        margin: 0 auto;
+        p {
+            text-align: justify;
+        }
+    }
 }
 
 @include paddingCenter('.main');

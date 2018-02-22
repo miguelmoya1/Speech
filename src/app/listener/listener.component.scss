@@ -1,10 +1,4 @@
 @import '../shared/styles/global.scss';
-.controls {
-    margin-bottom: .7rem;
-    display: flex;
-    justify-content: space-between;
-}
-
 .listener-container {
     padding: 1rem;
     background-color: $g6;
@@ -13,57 +7,44 @@
     border-radius: .4rem;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-}
-
-.result {
-    padding: .2rem;
-    min-height: 1.7rem;
-    max-height: 10rem;
-    overflow-y: auto;
-    border-radius: .2rem;
-    background-color: $g1;
-}
-
-.recognizing {
-    color: $g6;
-}
-
-p:hover,
-p:focus {
-    outline: none;
-}
-
-.actual-text,
-.recognizing {
-    padding: .1rem 0;
-    display: inline;
-}
-
-.mic {
-    cursor: pointer;
-}
-
-.close-modal {
-    padding: 5px;
-    cursor: pointer;
-}
-
-.form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
+    .mic {
+        cursor: pointer;
+    }
+    .controls {
+        margin-bottom: .7rem;
+        display: flex;
+        justify-content: space-between;
+        .right-control {
+            display: flex;
+            div {
+                padding: 0 .1rem;
+            }
+        }
+    }
+    .result {
+        padding: .2rem;
+        min-height: 1.7rem;
+        max-height: 10rem;
+        overflow-y: auto;
+        border-radius: .2rem;
+        background-color: $g1;
+        .actual-text,
+        .recognizing {
+            padding: .1rem 0;
+            display: inline;
+        }
+        .recognizing {
+            color: $g6;
+        }
+        p:hover,
+        p:focus {
+            outline: none;
+        }
+    }
 }
 
 .full-width {
     width: 100%;
-}
-
-.right-control {
-    display: flex;
-}
-
-.right-control div {
-    padding: 0 .1rem;
 }
 
 mat-form-field {

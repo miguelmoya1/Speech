@@ -38,6 +38,7 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
     ngAfterViewInit(): void {
         this.textService.getAll().subscribe(
             text => {
+                console.log(text);
                 this.texts = text;
                 this.generateEvent(text);
             },

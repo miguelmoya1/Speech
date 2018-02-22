@@ -9,6 +9,11 @@
     border-top-left-radius: .5rem;
     border-top-right-radius: .5rem;
     transform: translate(-50%);
+    .deshacer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 }
 
 .modal-bottom.error {
@@ -17,12 +22,6 @@
 
 .modal-bottom.success {
     background: $green;
-}
-
-.deshacer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 }
 
 .top-type-event {
