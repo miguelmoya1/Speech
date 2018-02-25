@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { IText } from '../../shared/interfaces';
 import { TextService, NotificationService } from '../../shared/services';
+import { Unicornio } from '../../app.constants';
 declare let $: any;
 
 @Component({
@@ -22,6 +23,8 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
         private notificationService: NotificationService
     ) {
         this.textEdit = { title: '' };
+        const unicornio = new Unicornio();
+        console.log(unicornio['🦄🦄']());
     }
 
     ngOnInit(): void {
