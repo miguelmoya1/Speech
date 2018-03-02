@@ -14,6 +14,7 @@ import { CanActivateGuard } from './shared/guards/can-activate.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserService, TextService, AuthService, NotificationService } from './shared/services';
 import { CantActivateLoggedGuard } from './shared/guards/cant-activate-logged.guard';
+import { BacklightComponent } from './backlight/backlight.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -30,6 +31,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         ListenerComponent,
         MainComponent,
         MenuComponent,
+        BacklightComponent,
     ],
     imports: [
         BrowserModule,

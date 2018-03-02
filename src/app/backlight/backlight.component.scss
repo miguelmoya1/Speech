@@ -1,0 +1,42 @@
+@import '../shared/styles/global.scss';
+@mixin backlight( $spread, $size, $colorA, $colorB, $duration) {
+    &:after {
+        position: absolute;
+        content: "";
+        top: 0;
+        right: 0;
+        z-index: -1;
+        height: 150%;
+        width: 150%;
+        margin: 0 auto;
+        transform: scale($size);
+        -webkit-filter: blur($spread);
+        -moz-filter: blur($spread);
+        -ms-filter: blur($spread);
+        filter: blur($spread);
+        background: linear-gradient(270deg, $colorA, $colorB);
+        background-size: 200% 200%;
+        animation: animateGlow $duration ease infinite;
+        @keyframes animateGlow {
+            0% {
+                background-position: 0% 50%
+            }
+            50% {
+                background-position: 100% 50%
+            }
+            100% {
+                background-position: 0% 50%
+            }
+        }
+    }
+}
+
+#backlight {
+    position: relative;
+    text-align: center;
+    animation: textColor 10s ease infinite;
+    margin: 0 10%;
+    @include backlight(5vw, 0.75, #0fffc1, #7e0fff, 10s);
+}
+
+@include paddingCenter('#backlight');
