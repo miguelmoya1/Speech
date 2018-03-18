@@ -8,14 +8,8 @@ import { UserService } from '../shared/services';
 })
 export class MainComponent implements OnInit {
 
-    constructor(
-        private userService: UserService
-    ) { }
+    constructor() { }
 
-    ngOnInit() {
-        this.userService.get().subscribe(
-            c => console.log(c)
-        );
-    }
+    ngOnInit() { }
 
 }

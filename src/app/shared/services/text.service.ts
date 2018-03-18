@@ -15,25 +15,24 @@ export class TextService {
     ) { }
 
     add(text: IText): Observable<any> {
-        return this.httpAuth.post(this.SERVER_URL, text)
+        return this.httpAuth
+            .post(this.SERVER_URL, text)
             .map(insertText => this.newText$.emit(insertText))
             .catch(error => Observable.throw(error));
     }
 
-    getAll(): Observable<IText[]> {
-        return this.httpAuth.get(this.SERVER_URL)
-            .map(response => response)
-            .catch(error => Observable.throw(error));
-    }
-
-    get(id: number): Observable<IText> {
-        return this.httpAuth.get(this.SERVER_URL + id)
+    get(): Observable<IText[]>;
+    get(id: number): Observable<IText>;
+    get(id?: number) {
+        return this.httpAuth
+            .get(this.SERVER_URL + (id ? id : ''))
             .map(response => response)
             .catch(error => Observable.throw(error));
     }
 
     update(text: IText): Observable<any> {
-        return this.httpAuth.put(this.SERVER_URL, text)
+        return this.httpAuth
+            .put(this.SERVER_URL, text)
             .map(response => response)
             .catch(error => Observable.throw(error));
     }

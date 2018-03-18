@@ -10,10 +10,9 @@ export class HttpAuth {
     ) { }
 
     setHeaders() {
-        const headers = new HttpHeaders();
-        const token = localStorage.getItem('id_token');
-        if (token) headers.set('Authorization', token);
-        return headers;
+        const header = {};
+        if (localStorage.getItem('id_token')) header['Authorization'] = localStorage.getItem('id_token');
+        return header;
     }
 
     get<T>(url: string) {

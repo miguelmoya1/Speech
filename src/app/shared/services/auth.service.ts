@@ -14,12 +14,10 @@ export class AuthService {
     SERVER_URL = SERVER_URL + '/auth/';
 
     constructor(
-        private http: HttpClient,
-        private httpAuth: HttpAuth,
+        private http: HttpAuth
     ) { }
 
     private setLogged(logged: boolean, token = ''): boolean {
-        console.log(token);
         this.logged = logged;
         if (logged && token) localStorage.setItem('id_token', token);
         else if (!logged) localStorage.removeItem('id_token');
@@ -32,14 +30,16 @@ export class AuthService {
     }
 
     private anyLogin(url: string, data: any): Observable<boolean> {
-        return this.http.post(url, data)
+        return this.http
+            .post(url, data)
             .map((response: any) => this.setLogged(true, response.token))
             .catch(error => Observable.throw(error.error));
     }
 
     isLogged(): Observable<boolean> {
         if (!this.logged && localStorage.getItem('id_token')) {
-            return this.httpAuth.get(this.SERVER_URL + 'token')
+            return this.http
+                .get(this.SERVER_URL + 'token')
                 .map(response => this.setLogged(true))
                 .catch(error => Observable.of(false))
                 .do(logged => this.setLogged(logged));
@@ -48,7 +48,8 @@ export class AuthService {
     }
 
     register(user: IUser): Observable<boolean> {
-        return this.http.post(this.SERVER_URL + 'register', user)
+        return this.http
+            .post(this.SERVER_URL + 'register', user)
             .map((response: any) => this.setLogged(true, response.token))
             .catch(error => Observable.throw(error));
     }
