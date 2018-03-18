@@ -3,7 +3,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { HttpModule, Http, RequestOptions } from '@angular/http';
+import { HttpModule, RequestOptions } from '@angular/http';
 import { AuthConfig, AuthHttp } from 'angular2-jwt';
 
 import { ListenerComponent } from './listener/listener.component';
@@ -15,15 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserService, TextService, AuthService, NotificationService } from './shared/services';
 import { CantActivateLoggedGuard } from './shared/guards/cant-activate-logged.guard';
 import { BacklightComponent } from './backlight/backlight.component';
-
-export function authHttpServiceFactory(http: Http, options: RequestOptions) {
-    return new AuthHttp(new AuthConfig({
-        headerName: 'Authorization',
-        tokenName: 'id_token',
-        tokenGetter: (() => localStorage.getItem('id_token')),
-        globalHeaders: [{ 'Content-Type': 'application/json' }],
-    }), http, options);
-}
+import { HttpAuth } from './shared/services/HttpAuth.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -36,6 +29,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     imports: [
         BrowserModule,
         FormsModule,
+        HttpClientModule,
         HttpModule,
         SharedModule,
         BrowserAnimationsModule,
@@ -55,14 +49,11 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
             redirectTo: ''
         }]),
     ],
-    providers: [{
-        provide: AuthHttp,
-        useFactory: authHttpServiceFactory,
-        deps: [Http, RequestOptions]
-    },
+    providers: [
         UserService,
         TextService,
         AuthService,
+        HttpAuth,
         NotificationService,
         CanActivateGuard,
         CantActivateLoggedGuard

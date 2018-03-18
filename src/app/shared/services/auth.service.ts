@@ -2,9 +2,10 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { SERVER_URL } from '../../app.constants';
 import { Http } from '@angular/http';
-import { AuthHttp } from 'angular2-jwt';
 import { Router } from '@angular/router';
 import { IUser } from '../interfaces/iuser';
+import { HttpClient } from '@angular/common/http';
+import { HttpAuth } from './HttpAuth.service';
 
 @Injectable()
 export class AuthService {
@@ -13,11 +14,12 @@ export class AuthService {
     SERVER_URL = SERVER_URL + '/auth/';
 
     constructor(
-        private http: Http,
-        private authHttp: AuthHttp,
+        private http: HttpClient,
+        private httpAuth: HttpAuth,
     ) { }
 
     private setLogged(logged: boolean, token = ''): boolean {
+        console.log(token);
         this.logged = logged;
         if (logged && token) localStorage.setItem('id_token', token);
         else if (!logged) localStorage.removeItem('id_token');
@@ -31,13 +33,13 @@ export class AuthService {
 
     private anyLogin(url: string, data: any): Observable<boolean> {
         return this.http.post(url, data)
-            .map(response => this.setLogged(true, response.json().token))
-            .catch(error => Observable.throw(error.json().error));
+            .map((response: any) => this.setLogged(true, response.token))
+            .catch(error => Observable.throw(error.error));
     }
 
     isLogged(): Observable<boolean> {
         if (!this.logged && localStorage.getItem('id_token')) {
-            return this.authHttp.get(this.SERVER_URL + 'token')
+            return this.httpAuth.get(this.SERVER_URL + 'token')
                 .map(response => this.setLogged(true))
                 .catch(error => Observable.of(false))
                 .do(logged => this.setLogged(logged));
@@ -47,7 +49,7 @@ export class AuthService {
 
     register(user: IUser): Observable<boolean> {
         return this.http.post(this.SERVER_URL + 'register', user)
-            .map(response => this.setLogged(true, response.json().token))
+            .map((response: any) => this.setLogged(true, response.token))
             .catch(error => Observable.throw(error));
     }
 

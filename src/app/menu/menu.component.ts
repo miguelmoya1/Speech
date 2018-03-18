@@ -54,7 +54,7 @@ export class MenuComponent implements OnInit {
     private setLoggedAndUser(logged: boolean): void {
         this.logged = logged;
         if (logged) {
-            this.userService.getUser().subscribe(
+            this.userService.get().subscribe(
                 user => this.user = user,
                 error => this.notificationService.generateError(error)
             );

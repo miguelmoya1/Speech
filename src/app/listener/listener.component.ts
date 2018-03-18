@@ -90,7 +90,7 @@ export class ListenerComponent implements OnInit {
 
     private setLoggedAndUser(logged: boolean): void {
         if (logged)
-            this.userService.getUser().subscribe(
+            this.userService.get().subscribe(
                 user => this.user = user,
                 error => { } // TODO: Mostrar el error
             );
