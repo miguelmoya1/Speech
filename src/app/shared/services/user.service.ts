@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { SERVER_URL } from '../../app.constants';
 import { IUser } from '../interfaces/iuser';
+import { HttpAuth } from './HttpAuth.service';
 
 
 @Injectable()
@@ -12,24 +13,14 @@ export class UserService {
     SERVER_URL = SERVER_URL + '/user/';
 
     constructor(
-        private http: AuthHttp
+        private http: HttpAuth
     ) { }
 
-    getUser(): Observable<IUser> {
-        return this.http.get(this.SERVER_URL)
-            .map(response => <IUser>response.json().user)
-            .catch(error => error);
+    get(id?: number) {
+        return this.http.get<IUser>(this.SERVER_URL + (id ? id : ''));
     }
 
-    getUserId(id: string): Observable<IUser> {
-        return this.http.get(this.SERVER_URL + id)
-            .map(response => <IUser>response.json().user)
-            .catch(error => error);
-    }
-
-    editUser(user: IUser): Observable<IUser> {
-        return this.http.put(this.SERVER_URL, user)
-            .map(response => <IUser>response.json().user)
-            .catch(error => error);
+    put(user: IUser) {
+        return this.http.put(this.SERVER_URL, user);
     }
 }
