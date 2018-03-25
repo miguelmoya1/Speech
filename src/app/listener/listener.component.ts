@@ -45,7 +45,6 @@ export class ListenerComponent implements OnInit {
         this.authService.logged$.subscribe(logged => this.setLoggedAndUser(logged));
         this.authService.isLogged().subscribe();
 
-
         if (!('webkitSpeechRecognition' in window)) {
             // TODO: Mostrar error de que no se reconoce.
         } else {
