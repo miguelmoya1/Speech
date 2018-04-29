@@ -17,6 +17,7 @@ import { CantActivateLoggedGuard } from './shared/guards/cant-activate-logged.gu
 import { BacklightComponent } from './backlight/backlight.component';
 import { HttpAuth } from './shared/services/HttpAuth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { IfVideoComponent } from './if-video/if-video.component';
 
 @NgModule({
     declarations: [
@@ -25,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
         MainComponent,
         MenuComponent,
         BacklightComponent,
+        IfVideoComponent,
     ],
     imports: [
         BrowserModule,
