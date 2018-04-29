@@ -18,6 +18,7 @@ export class IfVideoComponent implements OnInit {
     ngOnInit() {
         this.video = this.videoRef.nativeElement;
         this.playing = true;
+        this.changeSound();
     }
 
     playPause() {
@@ -29,7 +30,7 @@ export class IfVideoComponent implements OnInit {
         );
     }
 
-    changeSound(event) {
+    changeSound(event?) {
         if (!event) this.sound = this.sound ? 0 : 1;
         this.video.volume = this.sound;
     }

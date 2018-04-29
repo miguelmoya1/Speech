@@ -19,11 +19,11 @@
             height: 2rem;
             display: flex;
             .button {
+                cursor: pointer;
                 height: 100%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                cursor: pointer;
             }
             .button-play {
                 width: 4rem;
@@ -41,18 +41,33 @@
                 }
             }
             .button-sound {
+                width: 10rem;
                 $color: white;
                 $size: 5rem;
                 $border: $size / 25;
-                width: $size;
                 .sound {
-                    width: $size;
-                    height: $size;
-                    position: relative;
                     cursor: pointer;
+                    width: $size;
+                    position: relative;
                     display: flex;
                     align-items: center;
                     justify-content: flex-start;
+                }
+                .range-sound {
+                    cursor: pointer;
+                    visibility: hidden;
+                    opacity: 0;
+                    transition: .5s;
+                    width: 10rem;
+                    input {
+                        cursor: pointer;
+                    }
+                }
+                &:hover {
+                    .range-sound {
+                        visibility: visible;
+                        opacity: 1;
+                    }
                 }
             }
             .button-fullScreen {
