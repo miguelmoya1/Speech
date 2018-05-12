@@ -39,9 +39,10 @@ export class IfVideoComponent implements OnInit {
     setFullScreen() {
         const cancel = (<any>document).mozCancelFullScreen || (<any>document).exitFullScreen ||
             document.webkitExitFullscreen || (<any>document).msExitFullscreen;
-        const full = (<any>this.video.parentElement).mozRequestFullScreen || (<any>this.video.parentElement).requestFullScreen ||
-            this.video.parentElement.webkitRequestFullScreen || (<any>this.video.parentElement).msRequestFullScreen;
-        this.fullScreen ? cancel.call(document) : full.call(this.video.parentElement);
+        const full = (<any>this.video).mozRequestFullScreen || (<any>this.video).requestFullScreen ||
+            this.video.webkitRequestFullScreen || (<any>this.video).msRequestFullScreen;
+        this.fullScreen ? cancel.call(document) : full.call(this.video);
+
         this.fullScreen = !this.fullScreen;
     }
 }

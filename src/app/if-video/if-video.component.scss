@@ -3,6 +3,9 @@
     video {
         width: 100%;
     }
+    video::-webkit-media-controls-enclosure {
+        display: none !important;
+    }
     .video-controller {
         width: calc(100% - 1px);
         height: calc(100% + -4px);
