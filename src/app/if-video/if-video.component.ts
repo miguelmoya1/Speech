@@ -33,6 +33,7 @@ export class IfVideoComponent implements OnInit {
     changeSound(event?) {
         if (!event) this.sound = this.sound ? 0 : 1;
         this.video.volume = this.sound;
+        // this.video.volume++;
     }
 
     setFullScreen() {
