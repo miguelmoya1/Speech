@@ -22,7 +22,6 @@ import { NotificationService } from './shared/services/notification.service';
     ]
 })
 export class AppComponent implements OnInit {
-    // title = 'app';
     notification: INotification;
 
     constructor(
@@ -37,5 +36,4 @@ export class AppComponent implements OnInit {
             }
         );
     }
-
 }
