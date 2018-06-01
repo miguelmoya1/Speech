@@ -12,11 +12,11 @@ import { FormsModule } from '@angular/forms';
         FormsModule,
         RouterModule.forChild([
             { path: '', component: AuthComponent },
-            { path: '**', redirectTo: '' },
+            { path: '**', redirectTo: '' }
         ]),
     ],
     declarations: [
-        AuthComponent,
+        AuthComponent
     ]
 })
 export class AuthModule { }
