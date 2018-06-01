@@ -18,6 +18,7 @@ import { BacklightComponent } from './backlight/backlight.component';
 import { HttpAuth } from './shared/services/HttpAuth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { IfVideoComponent } from './if-video/if-video.component';
+import { FooterModule } from './footer/footer.module';
 
 @NgModule({
     declarations: [
@@ -34,6 +35,7 @@ import { IfVideoComponent } from './if-video/if-video.component';
         HttpClientModule,
         HttpModule,
         SharedModule,
+        FooterModule,
         BrowserAnimationsModule,
         RouterModule.forRoot([{
             path: 'calendario',
